@@ -1,11 +1,11 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { SCREEN_WIDTH } from '../../constants'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { SCREEN_WIDTH } from '../../constants';
 
 export default class Introduction extends Component {
     render() {
-        const { page } = this.props
+        const { page } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.introWrapper}>
@@ -92,7 +92,7 @@ export default class Introduction extends Component {
 
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -119,4 +119,4 @@ const styles = StyleSheet.create({
     introTxt: {
         color: "#900C3F"
     }
-})
+});

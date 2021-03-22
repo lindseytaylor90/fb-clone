@@ -6,7 +6,7 @@
     "orientation": "portrait",
     "icon": "./assets/mbLogo.png",
     "splash": {
-      "image": "./assets/splash.png",
+      "image": "./assets/mbLogo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },

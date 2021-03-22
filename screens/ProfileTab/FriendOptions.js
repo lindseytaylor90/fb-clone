@@ -1,35 +1,36 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, Clipboard } from 'react-native'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, Clipboard } from 'react-native';
 import Toast from 'react-native-root-toast';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import * as navigation from '../../rootNavigation'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import * as navigation from '../../rootNavigation';
 import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+
 export default class FriendOptions extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: false
-        }
+        };
     }
     onPressCopyPostLinkHandler() {
-        const { friend } = this.props.route.params
+        const { friend } = this.props.route.params;
         setTimeout(() => {
             this.setState({
                 ...this.state,
                 isVisible: false
-            })
-        }, 2000)
-        Clipboard.setString(`https://fakebook.com/posts/${friend.id}`)
+            });
+        }, 2000);
+        Clipboard.setString(`https://fakebook.com/posts/${friend.id}`);
         this.setState({
             ...this.state,
             isVisible: true
-        })
+        });
     }
     onPressBackdropHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { friend } = this.props.route.params
+        const { friend } = this.props.route.params;
         return (
             <View style={styles.container}>
                 <View style={styles.backdrop}>
@@ -81,7 +82,7 @@ export default class FriendOptions extends Component {
 
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -131,4 +132,4 @@ const styles = StyleSheet.create({
     postOptionSubtitle: {
         fontSize: 12
     }
-})
+});

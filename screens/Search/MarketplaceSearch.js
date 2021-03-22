@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TextInput, ScrollView, TouchableOpacity } from 'react-native'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import { STATUSBAR_HEIGHT, SCREEN_WIDTH } from '../../constants'
-import { navigation } from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TextInput, ScrollView, TouchableOpacity } from 'react-native';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import { STATUSBAR_HEIGHT, SCREEN_WIDTH } from '../../constants';
+import { navigation } from '../../rootNavigation';
 
 export default class MarketplaceSearch extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
         return (
@@ -276,7 +276,7 @@ export default class MarketplaceSearch extends Component {
                     </View>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 
@@ -316,4 +316,4 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     }
-})
+});

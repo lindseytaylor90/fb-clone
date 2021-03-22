@@ -1,31 +1,32 @@
-import React, { PureComponent } from 'react'
-import { TouchableOpacity, Text, StyleSheet, View, TextInput, SafeAreaView, Dimensions, Image } from 'react-native'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import * as navigation from '../../rootNavigation'
-import GroupCategories from '../../components/GroupCategories'
-import { FetchGroupHistoriesRequest } from '../../actions/historyActions'
-import { connect } from 'react-redux'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import WatchSearchRecommends from '../../components/WatchSearchRecommends'
+import React, { PureComponent } from 'react';
+import { TouchableOpacity, Text, StyleSheet, View, TextInput, SafeAreaView, Dimensions, Image } from 'react-native';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import * as navigation from '../../rootNavigation';
+import GroupCategories from '../../components/GroupCategories';
+import { FetchGroupHistoriesRequest } from '../../actions/historyActions';
+import { connect } from 'react-redux';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import WatchSearchRecommends from '../../components/WatchSearchRecommends';
+
 class WatchSearch extends PureComponent {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
-        const { fetchGroupHistories } = this.props
-        fetchGroupHistories()
+        const { fetchGroupHistories } = this.props;
+        fetchGroupHistories();
     }
     onPressGroupCategoriesHandler() {
-        navigation.push('GroupCategories')
+        navigation.push('GroupCategories');
     }
     onPressSeenVideosHandler() {
-        navigation.push('SeenVideos')
+        navigation.push('SeenVideos');
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { groupHistories } = this.props
+        const { groupHistories } = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.searchToolWrapper}>
@@ -53,20 +54,20 @@ class WatchSearch extends PureComponent {
                     <Text style={styles.descriptionSubtitle}>Search thread or any keywords to watch video </Text>
                 </View>
             </SafeAreaView>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         groupHistories: state.history.groups
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchGroupHistories: () => dispatch(FetchGroupHistoriesRequest())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(WatchSearch)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(WatchSearch);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     container: {
@@ -127,4 +128,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
         color: '#333'
     }
-})
+});

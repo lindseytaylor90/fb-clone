@@ -1,34 +1,35 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, Clipboard } from 'react-native'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, Clipboard } from 'react-native';
 import Toast from 'react-native-root-toast';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import * as navigation from '../../rootNavigation'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import * as navigation from '../../rootNavigation';
+
 export default class ProfilePostOptions extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: false
-        }
+        };
     }
     onPressCopyPostLinkHandler() {
-        const { postDetail } = this.props.route.params
+        const { postDetail } = this.props.route.params;
         setTimeout(() => {
             this.setState({
                 ...this.state,
                 isVisible: false
-            })
-        }, 2000)
-        Clipboard.setString(`https://fakebook.com/posts/${postDetail.id}`)
+            });
+        }, 2000);
+        Clipboard.setString(`https://fakebook.com/posts/${postDetail.id}`);
         this.setState({
             ...this.state,
             isVisible: true
-        })
+        });
     }
     onPressBackdropHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { postDetail } = this.props.route.params
+        const { postDetail } = this.props.route.params;
         return (
             <View style={styles.container}>
                 <View style={styles.backdrop}>
@@ -104,7 +105,7 @@ export default class ProfilePostOptions extends Component {
                     hideOnPress={true}
                 >Copied to clipboard</Toast>
             </View>
-        )
+        );
     }
 }
 
@@ -145,4 +146,4 @@ const styles = StyleSheet.create({
     postOptionSubtitle: {
         fontSize: 12
     }
-})
+});

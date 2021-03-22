@@ -8,34 +8,34 @@ import { FetchUserXRequest } from '../../actions/userXActions';
 
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressViewAllFriendsHandler() {
-        const { friends } = this.props
+        const { friends } = this.props;
         navigation.navigate("FullFriends", {
             friends
-        })
+        });
     }
     onPressProfileHandler(userId) {
-        const { isUserX, fetchUserInfo, ProfileXscrollToTop, user } = this.props
-        if (user.id === userId) return navigation.goBack()
+        const { isUserX, fetchUserInfo, ProfileXscrollToTop, user } = this.props;
+        if (user.id === userId) return navigation.goBack();
         if (isUserX) {
-            ProfileXscrollToTop()
-            return fetchUserInfo(userId)
+            ProfileXscrollToTop();
+            return fetchUserInfo(userId);
         }
         navigation.navigate("ProfileX", {
             userId
-        })
+        });
     }
     onPressFindFriendsHandler() {
-        navigation.navigate('FindFriends')
+        navigation.navigate('FindFriends');
     }
     render() {
-        const friends = [...this.props.friends]
-        const { isUserX, myFriends, userXId } = this.props
+        const friends = [...this.props.friends];
+        const { isUserX, myFriends, userXId } = this.props;
         let mututalCount;
         if (isUserX) {
-            mututalCount = myFriends.filter(friend => friend.id === userXId)[0]?.mutualFriends || 0
+            mututalCount = myFriends.filter(friend => friend.id === userXId)[0]?.mutualFriends || 0;
         }
         return (
             <View style={styles.friendsWrapper}>
@@ -78,20 +78,20 @@ class index extends Component {
                     <Text style={{ fontSize: 16, fontWeight: '500' }}>View all friends</Text>
                 </TouchableOpacity>
             </View>
-        )
-    }
-}
+        );
+    };
+};
 const mapStateToProps = state => {
     return {
         myFriends: state.user.friends,
         user: state.user.user
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchUserInfo: (userId) => dispatch(FetchUserXRequest(userId)),
-    }
-}
+    };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(index);
 const styles = StyleSheet.create({
     friendsWrapper: {
@@ -131,4 +131,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
+});

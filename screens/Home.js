@@ -3,12 +3,12 @@ import { connect } from 'react-redux'
 import { FetchPostsRequest } from '../actions/postsAction'
 import { LoginRequest } from '../actions/userActions'
 import { StyleSheet, Text, View, Button, ScrollView, Alert } from 'react-native';
-
 import { Dimensions } from "react-native";
 import RecommendFriends from '../components/RecommendFriends'
 import Item from '../components/Item'
 import Stories from '../components/Stories'
 import PostTool from '../components/PostTool'
+
 class Home extends Component {
 	constructor(props) {
 		super(props);

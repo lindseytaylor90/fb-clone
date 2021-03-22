@@ -1,22 +1,23 @@
-import React, { Component } from 'react'
-import { TextInput, View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native'
-import Comment from '../components/Comment'
-import * as navigation from '../rootNavigation'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
+import React, { Component } from 'react';
+import { TextInput, View, ScrollView, Text, StyleSheet, TouchableOpacity, Dimensions, TouchableWithoutFeedback, KeyboardAvoidingView } from 'react-native';
+import Comment from '../components/Comment';
+import * as navigation from '../rootNavigation';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+
 export default class extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             scrollEnabled: true
-        }
+        };
     }
     componentDidMount() {
     }
     onPressBtnBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressBackDropHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onScrollHandler(event) {
         if (event.nativeEvent.contentOffset.y === 0) {
@@ -28,7 +29,7 @@ export default class extends Component {
         }
     }
     render() {
-        const { comments } = this.props.route.params
+        const { comments } = this.props.route.params;
         return (
             <KeyboardAvoidingView behavior="height" style={{ backgroundColor: 'rgba(255,255,255,0.0)', position: 'relative', height: screenHeight }} enabled>
                 <TouchableWithoutFeedback onPress={this.onPressBackDropHandler}>
@@ -69,7 +70,7 @@ export default class extends Component {
                     </View>
                 </View>
             </KeyboardAvoidingView>
-        )
+        );
     }
 }
 const screenWidth = Math.round(Dimensions.get('window').width);
@@ -155,4 +156,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         flexDirection: 'row',
     }
-})
+});

@@ -3,9 +3,10 @@ import { Text, StyleSheet, View, Image, Dimensions } from 'react-native';
 import { TouchableWithoutFeedback, TouchableOpacity } from 'react-native-gesture-handler';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import { BASE_URL } from '../../constants';
+
 class JoinGroupListItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
 
@@ -14,7 +15,7 @@ class JoinGroupListItem extends Component {
 
     }
     render() {
-        const { groupDetail } = this.props
+        const { groupDetail } = this.props;
         return (
             <View style={styles.container}>
                 <Image source={{ uri: BASE_URL + groupDetail.avatar_url }} style={styles.avatar}></Image>
@@ -26,10 +27,10 @@ class JoinGroupListItem extends Component {
                     <Text style={{ fontWeight: '500', fontSize: 16 }}>Join Group</Text>
                 </TouchableOpacity>
             </View>
-        )
+        );
     }
 }
-export default JoinGroupListItem
+export default JoinGroupListItem;
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     container: {
@@ -67,4 +68,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd',
         borderRadius: 5
     }
-})
+});

@@ -9,33 +9,33 @@ import { connect } from 'react-redux';
 
 class ProfilePostItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressHandle() {
-        const { comments } = this.props.item
+        const { comments } = this.props.item;
         navigation.navigate('CommentsPopUp', {
             comments
-        })
+        });
     }
     onPressPostOptionsIconHandler() {
-        const { item } = this.props
+        const { item } = this.props;
         navigation.navigate('ProfilePostOptions', {
             postDetail: item
-        })
+        });
     }
     onPressPostImageHandler(id) {
         navigation.navigate('PostDetail', {
             id
-        })
+        });
     }
     onPressShareHandler() {
-        const { item } = this.props
+        const { item } = this.props;
         navigation.navigate('SharePost', {
             id: item?.id
-        })
+        });
     }
     render() {
-        const { user, item } = this.props
+        const { user, item } = this.props;
         return (
             <View style={styles.item}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -71,7 +71,7 @@ class ProfilePostItem extends Component {
                 </View>
                 <TouchableOpacity onPress={this.onPressPostImageHandler.bind(this, item?.id)}>
                     <View style={styles.imageContainer}>
-                        <ScaledImage height={300} source={item?.image}></ScaledImage>
+                        <ScaledImage height={300} source={BASE_URL + item?.image}></ScaledImage>
                     </View>
                 </TouchableOpacity>
                 <View horizontal={true} style={styles.reactionContainer}>
@@ -132,15 +132,15 @@ class ProfilePostItem extends Component {
                     <TouchableOpacity><Icon style={styles.btnSendComment} name="paper-plane" color="gray"></Icon></TouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         user: state.user.user
-    }
-}
-export default connect(mapStateToProps, null)(ProfilePostItem)
+    };
+};
+export default connect(mapStateToProps, null)(ProfilePostItem);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     customListView: {
@@ -232,4 +232,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 30
     }
-})
+});

@@ -1,35 +1,36 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
-import { connect } from 'react-redux'
-import * as navigation from '../../rootNavigation'
-import VideosFromThread from '../../components/VideosFromThread'
-import { SetThreadWatchingStatus, PauseThreadWatchingStatus } from '../../actions/watchVideosActions'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import { STATUSBAR_HEIGHT } from '../../constants'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import * as navigation from '../../rootNavigation';
+import VideosFromThread from '../../components/VideosFromThread';
+import { SetThreadWatchingStatus, PauseThreadWatchingStatus } from '../../actions/watchVideosActions';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import { STATUSBAR_HEIGHT } from '../../constants';
+
 class WatchDetailList extends Component {
 
-    pauseThreadWatchingStatusFn = () => { }
+    pauseThreadWatchingStatusFn = () => { };
 
     constructor(props) {
-        super(props)
+        super(props);
     }
 
     componentDidMount() {
-        const { threadId, id } = this.props.route.params
-        const { pauseThreadWatchingStatus } = this.props
-        this.pauseThreadWatchingStatusFn = pauseThreadWatchingStatus
+        const { threadId, id } = this.props.route.params;
+        const { pauseThreadWatchingStatus } = this.props;
+        this.pauseThreadWatchingStatusFn = pauseThreadWatchingStatus;
     }
     onPressGoBackHandler() {
-        this.pauseThreadWatchingStatusFn()
-        navigation.goBack()
+        this.pauseThreadWatchingStatusFn();
+        navigation.goBack();
     }
     onPressWatchSearchHandler() {
-        this.pauseThreadWatchingStatusFn()
-        navigation.push('WatchSearch')
+        this.pauseThreadWatchingStatusFn();
+        navigation.push('WatchSearch');
     }
     render() {
-        const { threadId, id } = this.props.route.params
+        const { threadId, id } = this.props.route.params;
         return (
             <View style={styles.container}>
                 <View style={styles.topOptiions}>
@@ -42,16 +43,16 @@ class WatchDetailList extends Component {
                 </View>
                 <VideosFromThread threadId={threadId} videoId={id} />
             </View>
-        )
+        );
     }
 }
 const mapDispatchToProps = (dispatch, props) => {
     return {
         setThreadWatchingStatus: (playingId, isPlaying) => dispatch(SetThreadWatchingStatus(playingId, isPlaying)),
         pauseThreadWatchingStatus: () => dispatch(PauseThreadWatchingStatus())
-    }
-}
-export default connect(null, mapDispatchToProps)(WatchDetailList)
+    };
+};
+export default connect(null, mapDispatchToProps)(WatchDetailList);
 const styles = StyleSheet.create({
     container: {
         paddingTop: STATUSBAR_HEIGHT,
@@ -64,4 +65,4 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         paddingHorizontal: 15
     }
-})
+});

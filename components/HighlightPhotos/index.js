@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native'
-import { SCREEN_WIDTH } from '../../constants'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
+import { SCREEN_WIDTH, BASE_URL } from '../../constants';
 
 export default class index extends Component {
     render() {
-        const { isFullRadius } = this.props
-        const highlightPhotos = [...this.props.photos]
+        const { isFullRadius } = this.props;
+        const highlightPhotos = [...this.props.photos];
         return (
             <View style={styles.highlightPhotosWrapper}>
                 {highlightPhotos.map((photo, index) => (
                     <TouchableOpacity key={index} activeOpacity={0.8}>
-                        <Image style={{ ...styles.photo, marginBottom: index < 6 ? 6 : 0, borderRadius: isFullRadius === true ? 10 : 0 }} source={{ uri: photo.photo_url }} />
+                        <Image style={{ ...styles.photo, marginBottom: index < 6 ? 6 : 0, borderRadius: isFullRadius === true ? 10 : 0 }} source={{ uri: BASE_URL + photo.photo_url }} />
                     </TouchableOpacity>
                 ))}
             </View>
-        )
+        );
     }
 }
 
@@ -32,4 +32,4 @@ const styles = StyleSheet.create({
         width: (SCREEN_WIDTH - 42) / 3,
         height: (SCREEN_WIDTH - 42) / 3
     }
-})
+});

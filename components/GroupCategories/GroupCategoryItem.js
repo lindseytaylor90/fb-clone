@@ -4,18 +4,19 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import * as navigation from '../../rootNavigation';
 import ExTouchableOpacity from '../ExTouchableOpacity';
 import { BASE_URL } from '../../constants';
+
 export default class GroupCategoryItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressCategoryItemHandler() {
-        const { category } = this.props
+        const { category } = this.props;
         navigation.push('GroupCategory', {
             category: category
-        })
+        });
     }
     render() {
-        const { category } = this.props
+        const { category } = this.props;
         return (
             <ExTouchableOpacity onPress={this.onPressCategoryItemHandler.bind(this)}>
                 <View style={styles.container}>
@@ -23,7 +24,7 @@ export default class GroupCategoryItem extends Component {
                     <Text style={styles.categoryTxt}>{category.name}</Text>
                 </View>
             </ExTouchableOpacity>
-        )
+        );
     }
 }
 
@@ -46,4 +47,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500'
     }
-})
+});

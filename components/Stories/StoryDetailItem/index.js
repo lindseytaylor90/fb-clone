@@ -11,18 +11,18 @@ import { BASE_URL } from '../../../constants';
 
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             displayImage: {},
             displayPosition: 0,
-        }
+        };
         // console.log(this.state)
-        this.widthAnim = new Animated.Value(0)
+        this.widthAnim = new Animated.Value(0);
     }
     preloadImages(images) {
         let preFetchTasks = [];
         for (let image of images) {
-            preFetchTasks.push(Image.prefetch(image.url));
+            preFetchTasks.push(Image.prefetch(BASE_URL + image.url));
         }
         Promise.all(preFetchTasks).then((results) => {
             let downloadedAll = true;
@@ -34,43 +34,43 @@ class index extends Component {
         })
     }
     componentDidMount() {
-        const { storyDetail, position, showingStory } = this.props
+        const { storyDetail, position, showingStory } = this.props;
         // console.log(showingStory)
-        let displayImagePosition = 0
+        let displayImagePosition = 0;
         for (let image of storyDetail.images) {
-            if (image.viewed) displayImagePosition++
+            if (image.viewed) displayImagePosition++;
         }
-        this.preloadImages(storyDetail.images)
-        if (displayImagePosition == storyDetail.images.length) displayImagePosition = 0
-        const displayImage = storyDetail.images[displayImagePosition]
+        this.preloadImages(storyDetail.images);
+        if (displayImagePosition == storyDetail.images.length) displayImagePosition = 0;
+        const displayImage = storyDetail.images[displayImagePosition];
         this.setState({
             ...this.state,
             displayImage: displayImage,
             displayPosition: displayImagePosition,
-        })
+        });
     }
     onSwipeHorizontalHandler(gestureState){
-        this.widthAnim.stopAnimation()
+        this.widthAnim.stopAnimation();
     }
     shouldComponentUpdate(nextProps, nextState) {
         if (nextProps.hasOwnProperty('showingStory')) {
-            return nextProps.showingStory.position === this.props.position
+            return nextProps.showingStory.position === this.props.position;
         }
-        return true
+        return true;
     }
     componentWillUnmount() {
-        console.log("will unmount item", this.props.storyDetail.id)
+        console.log("will unmount item", this.props.storyDetail.id);
     }
     onPressGoBackHandle() {
         navigation.goBack();
     }
     render() {
-        const { swiper, storyDetail, position, showingStory, stories, setShowingStory } = this.props
-        console.log("render item", position)
+        const { swiper, storyDetail, position, showingStory, stories, setShowingStory } = this.props;
+        console.log("render item", position);
         // if (!showingStory.hasOwnProperty('position')) return <View></View>;
         // console.log(position,showingStory.position)
         if (position === showingStory.position) {
-            this.widthAnim = new Animated.Value(0)
+            this.widthAnim = new Animated.Value(0);
             Animated.timing(
                 this.widthAnim,
                 {
@@ -84,22 +84,22 @@ class index extends Component {
                         ...this.state,
                         displayPosition: this.state.displayPosition + 1,
                         displayImage: storyDetail.images[this.state.displayPosition + 1]
-                    })
+                    });
                 } else {
                     if (position < stories.length - 1) {
-                        this.widthAnim = new Animated.Value(0)
-                        swiper.scrollBy(1)
+                        this.widthAnim = new Animated.Value(0);
+                        swiper.scrollBy(1);
                     } else {
-                        console.log("break at", position)
-                        this.widthAnim.stopAnimation()
+                        console.log("break at", position);
+                        this.widthAnim.stopAnimation();
                     }
                 }
-            })
+            });
         }
         const width = this.widthAnim.interpolate({
             inputRange: [0, 100],
             outputRange: ['0%', '100%']
-        })
+        });
 
         const config = {
             velocityThreshold: 0.3,
@@ -107,7 +107,7 @@ class index extends Component {
         };
         return (
             <GestureRecognizer config={config} onSwipeRight={this.onSwipeHorizontalHandler.bind(this)} onSwipeLeft={this.onSwipeHorizontalHandler.bind(this)}>
-                <ImageBackground blurRadius={50} imageStyle={{ resizeMode: 'cover' }} style={styles.backgroundWrapper} source={{ uri: this.state.displayImage.url }}>
+                <ImageBackground blurRadius={50} imageStyle={{ resizeMode: 'cover' }} style={styles.backgroundWrapper} source={{ uri: BASE_URL + this.state.displayImage.url }}>
                     <View>
                         <View style={styles.topBarWrapper}>
                             {storyDetail.images.map((image, index) => (
@@ -135,7 +135,7 @@ class index extends Component {
                                 <Text style={styles.time}>{this.state.displayImage.create_at}</Text>
                             </View>
                         </View>
-                        <Image resizeMode="contain" style={styles.image} source={{ uri: this.state.displayImage.url }}></Image>
+                        <Image resizeMode="contain" style={styles.image} source={{ uri: BASE_URL + this.state.displayImage.url }}></Image>
                         <ScrollView showsHorizontalScrollIndicator={false} nestedScrollEnabled={true} horizontal={true} style={styles.reactionWrapper}>
                             <TextInput placeholderTextColor="#fff" style={styles.msgInput} placeholder="Send message to poster"></TextInput>
                             <View style={styles.iconWrapper}>
@@ -185,21 +185,21 @@ class index extends Component {
                     </View>
                 </ImageBackground>
             </GestureRecognizer>
-        )
+        );
     }
 }
 
 const mapStateToProps = (state) => {
     return {
         stories: state.stories
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         setShowingStory: (story, position) => dispatch(SetShowingStoryRequest(story, position))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(index)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(index);
 const screenHeight = Math.round(Dimensions.get('window').height);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
@@ -277,4 +277,4 @@ const styles = StyleSheet.create({
     time: {
         color: '#fff'
     }
-})
+});

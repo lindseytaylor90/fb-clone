@@ -9,23 +9,23 @@ import * as navigation from '../../rootNavigation';
 
 class GroupCategories extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressCategoryHandler(category) {
         navigation.push('GroupCategory', {
             category
-        })
+        });
     }
     componentDidMount() {
-        const { fetchGroupCategories } = this.props
-        fetchGroupCategories()
+        const { fetchGroupCategories } = this.props;
+        fetchGroupCategories();
     }
     render() {
-        const { groupCategories } = this.props
-        if (groupCategories.length === 0) return <View></View>
+        const { groupCategories } = this.props;
+        if (groupCategories.length === 0) return <View></View>;
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.searchToolWrapper}>
@@ -55,20 +55,20 @@ class GroupCategories extends Component {
 
                 </ScrollView>
             </SafeAreaView>
-        )
+        );
     }
 }
 const mapStateToProps = (state) => {
     return {
         groupCategories: state.groupCategories
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchGroupCategories: () => dispatch(FetchGroupCategoriesRequest())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(GroupCategories)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(GroupCategories);
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff'
@@ -122,4 +122,4 @@ const styles = StyleSheet.create({
         width: '100%',
         justifyContent: 'center'
     }
-})
+});

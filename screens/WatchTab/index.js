@@ -10,28 +10,28 @@ import { BASE_URL } from '../../constants';
 
 class index extends Component {
     constructor(props) {
-        super(props)
-        this._isFocused = false
+        super(props);
+        this._isFocused = false;
     }
     componentDidMount() {
-        const { setWatchingVideo, isFocused } = this.props
+        const { setWatchingVideo, isFocused } = this.props;
         // console.log(isFocused)
         // setWatchingVideo(1)
     }
 
     UNSAFE_componentWillReceiveProps(nextProps) {
-        const { isFocused, setWatchingVideo, videoControl } = nextProps
+        const { isFocused, setWatchingVideo, videoControl } = nextProps;
         if (this._isFocused !== isFocused) {
-            this._isFocused = isFocused
-            if (isFocused) return setWatchingVideo(videoControl.playingId, true)
-            setWatchingVideo(videoControl.playingId, false)
+            this._isFocused = isFocused;
+            if (isFocused) return setWatchingVideo(videoControl.playingId, true);
+            setWatchingVideo(videoControl.playingId, false);
         }
     }
     shouldComponentUpdate(nextProps, nextState) {
-        const { user, videoControl, watchVideos } = this.props
-        const nextUser = nextProps.user
-        const nextWatchVideos = nextProps.watchVideos
-        const nextVideoControl = nextProps.videoControl
+        const { user, videoControl, watchVideos } = this.props;
+        const nextUser = nextProps.user;
+        const nextWatchVideos = nextProps.watchVideos;
+        const nextVideoControl = nextProps.videoControl;
         if (!isNaN(videoControl.playingId)
             && videoControl.playingId !== nextVideoControl.playingId) {
             watchVideos.every((video, index) => {
@@ -39,31 +39,31 @@ class index extends Component {
                     this.refs._scrollRef.scrollTo({
                         x: 0,
                         y: index * (nextVideoControl.fixedHeightWatchVideo + 10) + 100
-                    })
-                    return false
+                    });
+                    return false;
                 }
-                return true
-            })
+                return true;
+            });
 
         }
         return JSON.stringify(user) !== JSON.stringify(nextUser)
-            || JSON.stringify(watchVideos) !== JSON.stringify(nextWatchVideos)
+            || JSON.stringify(watchVideos) !== JSON.stringify(nextWatchVideos);
     }
     onScrollHandler({ nativeEvent }) {
-        const offSetY = nativeEvent.contentOffset.y
-        const { videoControl, watchVideos, setWatchingVideo } = this.props
-        const { fixedHeightWatchVideo } = videoControl
-        const index = Math.round((offSetY - 100) / (fixedHeightWatchVideo + 10))
-        const nextId = watchVideos[index].id
-        setWatchingVideo(nextId)
+        const offSetY = nativeEvent.contentOffset.y;
+        const { videoControl, watchVideos, setWatchingVideo } = this.props;
+        const { fixedHeightWatchVideo } = videoControl;
+        const index = Math.round((offSetY - 100) / (fixedHeightWatchVideo + 10));
+        const nextId = watchVideos[index].id;
+        setWatchingVideo(nextId);
     }
     onPressWatchSearchHandler() {
-        navigation.navigate('WatchSearch')
+        navigation.navigate('WatchSearch');
     }
     render() {
-        const { user } = this.props
-        if (!user.hasOwnProperty('id')) return <View></View>
-        const { watch_list } = user
+        const { user } = this.props;
+        if (!user.hasOwnProperty('id')) return <View></View>;
+        const { watch_list } = user;
         return (
             <View style={styles.container}>
                 <View>
@@ -105,7 +105,7 @@ class index extends Component {
                     </ScrollView>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
@@ -113,14 +113,14 @@ const mapStateToProps = state => {
         user: state.user.user,
         videoControl: state.videoControl,
         watchVideos: state.watch.watchVideos
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         setWatchingVideo: (playingId, isPlaying = true) => dispatch(SetWatchingVideo(playingId, isPlaying)),
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(index)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(index);
 const styles = StyleSheet.create({
     container: {
     },
@@ -179,4 +179,4 @@ const styles = StyleSheet.create({
         borderWidth: 3,
         borderColor: '#fff',
     }
-})
+});

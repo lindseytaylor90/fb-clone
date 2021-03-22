@@ -1,16 +1,16 @@
-import React, { Component } from 'react'
-import { View, Image, Text, TouchableOpacity, StyleSheet, ImageBackground, TextInput, Dimensions } from 'react-native'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { View, Image, Text, TouchableOpacity, StyleSheet, ImageBackground, TextInput, Dimensions } from 'react-native';
+import { connect } from 'react-redux';
+import Swiper from 'react-native-swiper';
+import * as navigation from '../rootNavigation';
+import StoryDetailItem from '../components/Stories/StoryDetailItem';
+import { FetchStoriesRequest } from '../actions/storiesAction';
+import { SetShowingStoryRequest } from '../actions/showingStoryActions';
 
-import Swiper from 'react-native-swiper'
-import * as navigation from '../rootNavigation'
-import StoryDetailItem from '../components/Stories/StoryDetailItem'
-import { FetchStoriesRequest } from '../actions/storiesAction'
-import { SetShowingStoryRequest } from '../actions/showingStoryActions'
 class StoryDetail extends Component {
     constructor(props) {
-        super(props)
-        this.swiper = {}
+        super(props);
+        this.swiper = {};
     }
     // static getDerivedStateFromProps(props, state) {
     //     const { stories, setShowingStory, showingStory } = props
@@ -22,26 +22,26 @@ class StoryDetail extends Component {
     //     }
     // }
     componentDidMount() {
-        const { stories, setShowingStory, showingStory } = this.props
-        const { position } = this.props.route.params
-        setShowingStory(stories[position], position)
+        const { stories, setShowingStory, showingStory } = this.props;
+        const { position } = this.props.route.params;
+        setShowingStory(stories[position], position);
     }
 
     onSwipeRightHandle() {
-        console.log("right")
+        console.log("right");
     }
     onSwipeLeftHandle() {
-        console.log("Left")
+        console.log("Left");
     }
     onIndexChangedHandle(index) {
-        const { stories, setShowingStory } = this.props
-        console.log("index", index)
-        setShowingStory({}, index)
+        const { stories, setShowingStory } = this.props;
+        console.log("index", index);
+        setShowingStory({}, index);
     }
     render() {
-        console.log("render parent")
-        const { stories, setShowingStory, showingStory } = this.props
-        const { position } = this.props.route.params
+        console.log("render parent");
+        const { stories, setShowingStory, showingStory } = this.props;
+        const { position } = this.props.route.params;
 
         return (
             <Swiper ref={(swiper) => this.swiper = swiper} onIndexChanged={this.onIndexChangedHandle.bind(this)} index={position} loop={false} showsPagination={false} style={styles.container}>
@@ -56,15 +56,15 @@ const mapStateToProps = (state) => {
     return {
         stories: state.stories,
         showingStory: state.showingStory
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchStories: () => dispatch(FetchStoriesRequest()),
         setShowingStory: (story, position) => dispatch(SetShowingStoryRequest(story, position))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(StoryDetail)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(StoryDetail);
 const screenHeight = Math.round(Dimensions.get('window').height);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
@@ -132,4 +132,4 @@ const styles = StyleSheet.create({
     time: {
         color: '#fff'
     }
-})
+});

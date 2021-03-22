@@ -14,21 +14,21 @@ import {
 
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isOverScrollLimit: false,
             currentNavigationTab: pageNavigationTypes.HOME,
             isFixedNavigationBar: false
-        }
-        this._currentScrollOffsetY = 0
+        };
+        this._currentScrollOffsetY = 0;
     }
     componentDidMount() {
-        const { pageId } = this.props.route.params
-        const { fetchPageDetail } = this.props
-        fetchPageDetail(pageId)
+        const { pageId } = this.props.route.params;
+        const { fetchPageDetail } = this.props;
+        fetchPageDetail(pageId);
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressChangeTabHandler(tabId) {
         setTimeout(() => {
@@ -36,95 +36,95 @@ class index extends Component {
                 x: 0,
                 y: this._currentScrollOffsetY,
                 animated: true
-            })
+            });
         }, 200);
         this.refs._tabScrollRef.scrollTo({
             x: tabId * SCREEN_WIDTH,
             y: 0,
             animated: true
-        })
+        });
         switch (tabId) {
             case pageNavigationTypes.HOME:
                 this.setState({
                     ...this.state,
                     currentNavigationTab: pageNavigationTypes.HOME
-                })
+                });
                 break;
             case pageNavigationTypes.INTRODUCTION:
                 this.setState({
                     ...this.state,
                     currentNavigationTab: pageNavigationTypes.INTRODUCTION
-                })
+                });
                 break;
             case pageNavigationTypes.POSTS:
                 this.setState({
                     ...this.state,
                     currentNavigationTab: pageNavigationTypes.POSTS
-                })
+                });
                 break;
             case pageNavigationTypes.VIDEOS:
                 this.setState({
                     ...this.state,
                     currentNavigationTab: pageNavigationTypes.VIDEOS
-                })
+                });
                 break;
             case pageNavigationTypes.PHOTOS:
                 this.setState({
                     ...this.state,
                     currentNavigationTab: pageNavigationTypes.PHOTOS
-                })
+                });
                 break;
             case pageNavigationTypes.EVENT:
                 this.setState({
                     ...this.state,
                     currentNavigationTab: pageNavigationTypes.EVENT
-                })
+                });
                 break;
             case pageNavigationTypes.COMMUNICATION:
                 this.setState({
                     ...this.state,
                     currentNavigationTab: pageNavigationTypes.COMMUNICATION
-                })
+                });
                 break;
         }
     }
     onScrollHandler({ nativeEvent }) {
-        const offsetY = nativeEvent.contentOffset.y
-        this._currentScrollOffsetY = offsetY
-        const { isOverScrollLimit, isFixedNavigationBar } = this.state
+        const offsetY = nativeEvent.contentOffset.y;
+        this._currentScrollOffsetY = offsetY;
+        const { isOverScrollLimit, isFixedNavigationBar } = this.state;
         if (offsetY > OFFSETY_LIMIT_FOR_FIX_NAVIGATION_BAR) {
             if (!isFixedNavigationBar) {
                 this.setState({
                     ...this.state,
                     isFixedNavigationBar: true
-                })
+                });
             }
         } else {
             if (isFixedNavigationBar) {
                 this.setState({
                     ...this.state,
                     isFixedNavigationBar: false
-                })
+                });
             }
         }
         if (isOverScrollLimit && offsetY < 250) {
             this.setState({
                 ...this.state,
                 isOverScrollLimit: false
-            })
+            });
         }
         if (!isOverScrollLimit && offsetY > 250) {
             this.setState({
                 ...this.state,
                 isOverScrollLimit: true
-            })
+            });
         }
     }
     render() {
-        const { currentNavigationTab, isOverScrollLimit, isFixedNavigationBar } = this.state
-        const { pageDetail } = this.props
-        if (!pageDetail.hasOwnProperty("id")) return <View></View>
-        const friendsLikePage = [...pageDetail.friendsLikePage]
+        const { currentNavigationTab, isOverScrollLimit, isFixedNavigationBar } = this.state;
+        const { pageDetail } = this.props;
+        if (!pageDetail.hasOwnProperty("id")) return <View></View>;
+        const friendsLikePage = [...pageDetail.friendsLikePage];
         return (
             <View style={styles.container}>
                 <View style={{
@@ -447,21 +447,21 @@ class index extends Component {
                     </View>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         pageDetail: state.page.page,
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchPageDetail: pageId => dispatch(FetchPageDetailRequest(pageId))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(index)
-const OFFSETY_LIMIT_FOR_FIX_NAVIGATION_BAR = 250 + 64 + 10 + 15 + 40 + 36 + 30 - STATUSBAR_HEIGHT - 50
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(index);
+const OFFSETY_LIMIT_FOR_FIX_NAVIGATION_BAR = 250 + 64 + 10 + 15 + 40 + 36 + 30 - STATUSBAR_HEIGHT - 50;
 const styles = StyleSheet.create({
     container: {
         position: 'relative',
@@ -588,4 +588,4 @@ const styles = StyleSheet.create({
     },
     tabScreensWrapper: {
     }
-})
+});

@@ -1,43 +1,43 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, ScrollView, Image } from 'react-native'
-import { SCREEN_WIDTH } from '../../constants'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, ScrollView, Image } from 'react-native';
+import { SCREEN_WIDTH, BASE_URL } from '../../constants';
 
 export default class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             currentIndex: 0
-        }
+        };
     }
     onEndScrollHandler({ nativeEvent }) {
-        console.log("xxxx")
-        const offsetX = nativeEvent.contentOffset.x
-        const prevIndex = Math.floor(offsetX / SCREEN_WIDTH)
-        const percent = offsetX / SCREEN_WIDTH - prevIndex
+        console.log("xxxx");
+        const offsetX = nativeEvent.contentOffset.x;
+        const prevIndex = Math.floor(offsetX / SCREEN_WIDTH);
+        const percent = offsetX / SCREEN_WIDTH - prevIndex;
         if (percent > 0.5) {
             this.setState({
                 ...this.state,
                 currentIndex: prevIndex + 1
-            })
+            });
             this.refs._scrollRef.scrollTo({
                 animated: true,
                 x: (prevIndex + 1) * SCREEN_WIDTH,
                 y: 0
-            })
+            });
         } else {
             this.setState({
                 ...this.state,
                 currentIndex: prevIndex
-            })
+            });
             this.refs._scrollRef.scrollTo({
                 animated: true,
                 x: (prevIndex) * SCREEN_WIDTH,
                 y: 0
-            })
+            });
         }
     }
     render() {
-        const { images } = this.props
+        const { images } = this.props;
         return (
             <View style={styles.container}>
                 <ScrollView
@@ -50,7 +50,7 @@ export default class index extends Component {
                     horizontal={true}
                     style={styles.imagesWrapper}>
                     {images?.map((image, index) =>
-                        <Image style={styles.image} source={{ uri: image }} />
+                        <Image style={styles.image} source={{ uri: BASE_URL + image }} />
                     )}
                 </ScrollView>
                 <View style={styles.dotNavigationWrapper}>
@@ -60,7 +60,7 @@ export default class index extends Component {
                 </View>
             </View>
 
-        )
+        );
     }
 }
 
@@ -92,4 +92,4 @@ const styles = StyleSheet.create({
         height: '100%',
         width: SCREEN_WIDTH
     }
-})
+});

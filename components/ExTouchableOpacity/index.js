@@ -1,6 +1,7 @@
 import debounce from 'lodash.debounce';
-import React, { PureComponent } from 'react'
-import { TouchableOpacity } from 'react-native'
+import React, { PureComponent } from 'react';
+import { TouchableOpacity } from 'react-native';
+
 const withPreventDoubleClick = (WrappedComponent) => {
     class PreventDoubleClick extends React.PureComponent {
         debouncedOnPress = () => {
@@ -11,7 +12,7 @@ const withPreventDoubleClick = (WrappedComponent) => {
             return <WrappedComponent activeOpacity={0.6} {...this.props} onPress={this.onPress}>{this.props.children}</WrappedComponent>;
         }
     }
-    PreventDoubleClick.displayName = `withPreventDoubleClick(${WrappedComponent.displayName || WrappedComponent.name})`
+    PreventDoubleClick.displayName = `withPreventDoubleClick(${WrappedComponent.displayName || WrappedComponent.name})`;
     return PreventDoubleClick;
 }
-export default withPreventDoubleClick(TouchableOpacity)
+export default withPreventDoubleClick(TouchableOpacity);

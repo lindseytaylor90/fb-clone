@@ -8,20 +8,20 @@ import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 export default class NotificationOptions extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidUpdate() {
     }
     onPressBackdropHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { notification, Description } = this.props.route.params
+        const { notification, Description } = this.props.route.params;
         let displayAvatarUri;
         if (notification.type === notificationTypes.NEW_PHOTO_IN_GROUP
             || notification.type === notificationTypes.NEW_POST_IN_GROUP
-        ) displayAvatarUri = BASE_URL + notification.group.avatar_url
-        else displayAvatarUri = BASE_URL + notification.user.avatar_url
+        ) displayAvatarUri = BASE_URL + notification.group.avatar_url;
+        else displayAvatarUri = BASE_URL + notification.user.avatar_url;
         return (
             <View style={styles.container}>
                 <TouchableOpacity
@@ -58,7 +58,7 @@ export default class NotificationOptions extends Component {
                     </View>
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -110,4 +110,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
         marginLeft: 10
     }
-})
+});

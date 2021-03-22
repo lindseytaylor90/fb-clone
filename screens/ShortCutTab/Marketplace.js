@@ -10,55 +10,55 @@ import { FetchMarketplaceProductsRequest } from '../../actions/marketplaceAction
 
 class Marketplace extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
-        const { fetchMarketplaceProducts } = this.props
-        fetchMarketplaceProducts()
+        const { fetchMarketplaceProducts } = this.props;
+        fetchMarketplaceProducts();
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressMarketplaceSearchHandler() {
-        navigation.navigate("MarketplaceSearch")
+        navigation.navigate("MarketplaceSearch");
     }
     render() {
-        const { user, marketplaceProducts } = this.props
+        const { user, marketplaceProducts } = this.props;
         //divide by group
-        let recommand = []
-        let furniture = []
-        let common = []
-        let myArea = []
-        let garden = []
-        let computer = []
-        let tool = []
-        let musicalInstrument = []
+        let recommand = [];
+        let furniture = [];
+        let common = [];
+        let myArea = [];
+        let garden = [];
+        let computer = [];
+        let tool = [];
+        let musicalInstrument = [];
         marketplaceProducts.map(product => {
             switch (product.type) {
                 case productTypes.RECOMMEND:
-                    recommand.push(product)
-                    break
+                    recommand.push(product);
+                    break;
                 case productTypes.COMPUTER:
-                    computer.push(product)
-                    break
+                    computer.push(product);
+                    break;
                 case productTypes.COMMON:
-                    common.push(product)
-                    break
+                    common.push(product);
+                    break;
                 case productTypes.FURNITURE:
-                    furniture.push(product)
-                    break
+                    furniture.push(product);
+                    break;
                 case productTypes.TOOL:
-                    tool.push(product)
-                    break
+                    tool.push(product);
+                    break;
                 case productTypes.MY_AREA:
-                    myArea.push(product)
-                    break
+                    myArea.push(product);
+                    break;
                 case productTypes.GARDEN:
-                    garden.push(product)
-                    break
+                    garden.push(product);
+                    break;
                 case productTypes.MUSICAL_INSTRUMENT:
-                    musicalInstrument.push(product)
-                    break
+                    musicalInstrument.push(product);
+                    break;
             }
         })
         return (
@@ -117,21 +117,21 @@ class Marketplace extends Component {
 
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         user: state.user.user,
         marketplaceProducts: state.marketplaceProducts
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchMarketplaceProducts: () => dispatch(FetchMarketplaceProductsRequest())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(Marketplace)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Marketplace);
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff'
@@ -177,4 +177,4 @@ const styles = StyleSheet.create({
         height: SCREEN_HEIGHT - STATUSBAR_HEIGHT - 50
     }
 
-})
+});

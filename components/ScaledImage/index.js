@@ -1,5 +1,6 @@
 import React, { Component, PropTypes } from "react";
 import { Image } from "react-native";
+
 class ScaledImage extends Component {
     constructor(props) {
         super(props);
@@ -33,4 +34,4 @@ class ScaledImage extends Component {
         );
     }
 }
-export default ScaledImage
+export default ScaledImage;

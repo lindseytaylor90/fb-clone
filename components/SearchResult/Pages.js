@@ -8,17 +8,17 @@ import { SCREEN_WIDTH, BASE_URL } from '../../constants';
 
 class Pages extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressViewPageHandler(pageId) {
         navigation.navigate('Page', {
             pageId
-        })
+        });
     }
     render() {
-        const { hidden, isShowPreview, showAllFn } = this.props
-        let pages = [...this.props.pages]
-        if (isShowPreview) pages = pages.splice(0, 4)
+        const { hidden, isShowPreview, showAllFn } = this.props;
+        let pages = [...this.props.pages];
+        if (isShowPreview) pages = pages.splice(0, 4);
         return (
             <View style={{ ...styles.container, display: hidden ? 'none' : 'flex' }}>
                 <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Pages</Text>
@@ -46,15 +46,15 @@ class Pages extends Component {
                     </TouchableOpacity>
                 }
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         pages: state.searchResult.pages
-    }
-}
-export default connect(mapStateToProps, null)(Pages)
+    };
+};
+export default connect(mapStateToProps, null)(Pages);
 const styles = StyleSheet.create({
     container: {
         margin: 10,
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd',
         borderRadius: 5
     }
-})
+});

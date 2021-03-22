@@ -1,50 +1,50 @@
-import React, { Component } from 'react'
-import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
-import ScaledImage from '../ScaledImage'
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import * as navigation from '../../rootNavigation'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { permission, BASE_URL } from '../../constants'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native';
+import ScaledImage from '../ScaledImage';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import * as navigation from '../../rootNavigation';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { permission, BASE_URL } from '../../constants';
+import { connect } from 'react-redux';
 
 class Item extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressHandle() {
-        const { comments } = this.props.item
+        const { comments } = this.props.item;
         navigation.navigate('Comments', {
             comments
-        })
+        });
     }
     onPressPostOptionsIconHandler() {
-        const { item } = this.props
+        const { item } = this.props;
         navigation.navigate('PostOptions', {
             postDetail: item
-        })
+        });
     }
     onPressPostImageHandler(id) {
         navigation.navigate('PostDetail', {
             id
-        })
+        });
     }
     onPressShareHandler() {
-        const { item } = this.props
+        const { item } = this.props;
         navigation.navigate('SharePost', {
             id: item.id
-        })
+        });
     }
     onPressProfileHandler(userId) {
-        const { user } = this.props
+        const { user } = this.props;
         if (userId === user.id) {
-            return navigation.navigate('Profile')
+            return navigation.navigate('Profile');
         }
         navigation.push('ProfileX', {
             userId
-        })
+        });
     }
     render() {
-        const { user, item } = this.props
+        const { user, item } = this.props;
         return (
             <View style={styles.item}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -80,7 +80,7 @@ class Item extends Component {
                 </View>
                 <TouchableOpacity onPress={this.onPressPostImageHandler.bind(this, item.id)}>
                     <View style={styles.imageContainer}>
-                        <ScaledImage height={300} source={item.image}></ScaledImage>
+                        <ScaledImage height={300} source={BASE_URL + item.image}></ScaledImage>
                     </View>
                 </TouchableOpacity>
                 <View horizontal={true} style={styles.reactionContainer}>
@@ -147,9 +147,9 @@ class Item extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user.user
-    }
-}
-export default connect(mapStateToProps, null)(Item)
+    };
+};
+export default connect(mapStateToProps, null)(Item);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     customListView: {
@@ -241,4 +241,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 30
     }
-})
+});

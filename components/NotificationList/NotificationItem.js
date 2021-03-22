@@ -6,105 +6,104 @@ import ExTouchableOpacity from '../ExTouchableOpacity';
 import { navigation } from '../../rootNavigation';
 import { connect } from 'react-redux';
 
-
 class NotificationItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onShowNotificationOptionsHandler(Description) {
-        const { item } = this.props
+        const { item } = this.props;
         navigation.navigate('NotificationOptions', {
             notification: item,
             Description
-        })
+        });
     }
     onPressNotificationHandler() {
-        const { item, stories } = this.props
-        const { user } = item
+        const { item, stories } = this.props;
+        const { user } = item;
         switch (item.type) {
             case notificationTypes.ANYONE_ACCEPT_YOUR_FRIEND_REQUEST:
                 navigation.navigate("ProfileX", {
                     userId: user.id
-                })
-                break
+                });
+                break;
             case notificationTypes.ANYONE_ADD_TO_STORY:
-                const userIds = stories.map(story => story.userId)
+                const userIds = stories.map(story => story.userId);
                 navigation.navigate("StoryDetail", {
                     position: userIds.indexOf(user.id)
-                })
-                break
+                });
+                break;
             case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT:
-                break
+                break;
             case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP:
-                break
+                break;
             case notificationTypes.ANYONE_COMMENT_POST_IN_GROUP_TOO:
-                break
+                break;
             case notificationTypes.ANYONE_COMMENT_POST_OF_ANYONE_TOO:
-                break
+                break;
             case notificationTypes.ANYONE_LIVE_STREAM:
-                break
+                break;
             case notificationTypes.ANYONE_REACT_YOUR_COMMENT:
-                break
+                break;
             case notificationTypes.ANYONE_REACT_YOUR_POST:
                 navigation.navigate("PostDetail", {
                     id: item.post.id
-                })
-                break
+                });
+                break;
             case notificationTypes.ANYONE_TAG_YOU_ON_POST_IN_GROUP:
                 navigation.navigate("GroupProfile", {
                     id: item.group.id
-                })
-                break
+                });
+                break;
             case notificationTypes.ANYONE_TAG_YOU_ON_POST_OF_ANYONE:
                 navigation.navigate("PostDetail", {
                     id: item.post.id
-                })
-                break
+                });
+                break;
             case notificationTypes.NEW_PHOTO_IN_GROUP:
                 navigation.navigate("GroupProfile", {
                     id: item.group.id
-                })
-                break
+                });
+                break;
             case notificationTypes.NEW_POST_IN_GROUP:
                 navigation.navigate("GroupProfile", {
                     id: item.group.id
-                })
-                break
+                });
+                break;
         }
     }
     render() {
-        const { item } = this.props
-        let displayAvatarUri, Description, icon;
+        const { item } = this.props;
+        let displayAvatarUri, Description, icon;;
         if (item.type === notificationTypes.NEW_PHOTO_IN_GROUP
             || item.type === notificationTypes.NEW_POST_IN_GROUP
-        ) displayAvatarUri = BASE_URL + item.group.avatar_url
-        else displayAvatarUri = BASE_URL + item.user.avatar_url
+        ) displayAvatarUri = BASE_URL + item.group.avatar_url;
+        else displayAvatarUri = BASE_URL + item.user.avatar_url;
         let iconName, iconColor;
         switch (item.reactionType) {
             case reactionTypes.LIKE:
-                iconName = 'thumbs-up'
-                iconColor = '#900C3F'
-                break
+                iconName = 'thumbs-up';
+                iconColor = '#900C3F';
+                break;
             case reactionTypes.LOVE:
-                iconName = 'heart'
-                iconColor = '#e8304a'
-                break
+                iconName = 'heart';
+                iconColor = '#e8304a';
+                break;
             case reactionTypes.HAHA:
-                iconName = 'grin-squint'
-                iconColor = '#f7ca51'
-                break
+                iconName = 'grin-squint';
+                iconColor = '#f7ca51';
+                break;
             case reactionTypes.WOW:
-                iconName = 'surprise'
-                iconColor = '#f7ca51'
-                break
+                iconName = 'surprise';
+                iconColor = '#f7ca51';
+                break;
             case reactionTypes.SAD:
-                iconName = 'sad-tear'
-                iconColor = '#f7ca51'
-                break
+                iconName = 'sad-tear';
+                iconColor = '#f7ca51';
+                break;
             case reactionTypes.ANGRY:
-                iconName = 'angry'
-                iconColor = '#dc4311'
-                break
+                iconName = 'angry';
+                iconColor = '#dc4311';
+                break;
         }
         switch (item.type) {
             case notificationTypes.ANYONE_ACCEPT_YOUR_FRIEND_REQUEST:
@@ -113,86 +112,86 @@ class NotificationItem extends Component {
                     color: '#fff',
                     size: 14,
                     bgColor: '#900C3F'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{item.user.name}</Text> accept your friend request.</Text>
-                break
+                    <Text style={styles.hightlightTxt}>{item.user.name}</Text> accept your friend request.</Text>;
+                break;
             case notificationTypes.ANYONE_ADD_TO_STORY:
                 icon = {
                     name: 'image',
                     color: '#fff',
                     size: 14,
                     bgColor: '#900C3F'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{item.user.name}</Text> added to my story.</Text>
-                break
+                    <Text style={styles.hightlightTxt}>{item.user.name}</Text> added to my story.</Text>;
+                break;
             case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT:
                 icon = {
                     name: 'comment-alt',
                     color: '#fff',
                     size: 14,
                     bgColor: '#63BE09'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{item.user.name}</Text> replied your comment.</Text>
-                break
+                    <Text style={styles.hightlightTxt}>{item.user.name}</Text> replied your comment.</Text>;
+                break;
             case notificationTypes.ANYONE_ANSWER_YOUR_COMMENT_IN_GROUP:
                 icon = {
                     name: 'comment-alt',
                     color: '#fff',
                     size: 14,
                     bgColor: '#63BE09'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.user.name}</Text> replied your comment in group <Text style={styles.hightlightTxt}>{item.group.name}</Text>.</Text>
-                break
+                break;
             case notificationTypes.ANYONE_COMMENT_POST_IN_GROUP_TOO:
                 icon = {
                     name: 'comment-alt',
                     color: '#fff',
                     size: 14,
                     bgColor: '#900C3F'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.user.name}</Text> commented in a post which you followed in group <Text style={styles.hightlightTxt}>{item.group.name}</Text> too.</Text>
-                break
+                break;
             case notificationTypes.ANYONE_COMMENT_POST_OF_ANYONE_TOO:
                 icon = {
                     name: 'comment-alt',
                     color: '#fff',
                     size: 14,
                     bgColor: '#63BE09'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.user.name}</Text> commented in <Text style={styles.hightlightTxt}>{item.ownUser?.name}</Text>'s post too.</Text>
-                break
+                break;
             case notificationTypes.ANYONE_LIVE_STREAM:
                 icon = {
                     name: 'video',
                     color: '#fff',
                     size: 14,
                     bgColor: '#e8343d'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
-                    <Text style={styles.hightlightTxt}>{item.user.name}</Text> lived stream.</Text>
-                break
+                    <Text style={styles.hightlightTxt}>{item.user.name}</Text> lived stream.</Text>;
+                break;
             case notificationTypes.ANYONE_REACT_YOUR_COMMENT:
 
                 icon = {
                     name: iconName,
                     color: iconColor,
                     size: 24,
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.user.name}</Text> and {item.remainingCount} another people react your comment.</Text>
-                break
+                break;
             case notificationTypes.ANYONE_REACT_YOUR_POST:
                 icon = {
                     name: iconName,
                     color: iconColor,
                     size: 24,
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.user.name}</Text> and {item.remainingCount} another people react your post.</Text>
                 break
@@ -202,43 +201,43 @@ class NotificationItem extends Component {
                     color: '#fff',
                     size: 14,
                     bgColor: '#63BE09'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.user.name}</Text> tagged you in a comment in group <Text style={styles.hightlightTxt}>{item.group.name}</Text>.</Text>
-                break
+                break;
             case notificationTypes.ANYONE_TAG_YOU_ON_POST_OF_ANYONE:
                 icon = {
                     name: 'comment-alt',
                     color: '#fff',
                     size: 14,
                     bgColor: '#63BE09'
-                }
+                };
                 Description = () => <Text style={styles.pureTxt}>
                     <Text style={styles.hightlightTxt}>{item.user.name}</Text> tagged you in a comment in <Text style={styles.hightlightTxt}>{item.ownUser?.name}</Text>'s post.</Text>
-                break
+                break;
             case notificationTypes.NEW_PHOTO_IN_GROUP:
                 icon = {
                     name: 'users',
                     color: '#fff',
                     size: 14,
                     bgColor: '#900C3F'
-                }
+                };
                 Description = () => {
                     return <Text style={styles.pureTxt}>
                         <Text style={styles.hightlightTxt}>{item.user.name}</Text> post a new photo in group <Text style={styles.hightlightTxt}>{item.group.name}</Text>.</Text>
-                }
-                break
+                };
+                break;
             case notificationTypes.NEW_POST_IN_GROUP:
                 icon = {
                     name: 'users',
                     color: '#fff',
                     bgColor: '#900C3F'
-                }
+                };
                 Description = () => {
                     return <Text style={styles.pureTxt}>
                         <Text style={styles.hightlightTxt}>{item.user.name}</Text> post a new post in group <Text style={styles.hightlightTxt}>{item.group.name}</Text>.</Text>
-                }
-                break
+                };
+                break;
         }
         return (
             <View style={{ backgroundColor: "rgba(0,0,0,0.3)" }}>
@@ -260,15 +259,15 @@ class NotificationItem extends Component {
                     </ExTouchableOpacity>
                 </ExTouchableOpacity>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         stories: state.stories
-    }
-}
-export default connect(mapStateToProps, null)(NotificationItem)
+    };
+};
+export default connect(mapStateToProps, null)(NotificationItem);
 const styles = StyleSheet.create({
     container: {
         paddingVertical: 8,
@@ -314,4 +313,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
+});

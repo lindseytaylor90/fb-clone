@@ -1,26 +1,27 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
-import { connect } from 'react-redux'
-import { FetchNotificationsRequest } from '../../actions/notificationsActions'
-import { notificationTypes } from '../../constants'
-import NotificationList from '../../components/NotificationList'
-import VerticalRecommendFriends from '../../components/VerticalRecommendFriends'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { navigation } from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import { FetchNotificationsRequest } from '../../actions/notificationsActions';
+import { notificationTypes } from '../../constants';
+import NotificationList from '../../components/NotificationList';
+import VerticalRecommendFriends from '../../components/VerticalRecommendFriends';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { navigation } from '../../rootNavigation';
+
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
-        const { fetchNotifications } = this.props
-        fetchNotifications()
+        const { fetchNotifications } = this.props;
+        fetchNotifications();
     }
     onPressSearchHandler() {
-        navigation.navigate('Search')
+        navigation.navigate('Search');
     }
     render() {
-        const notifications = [...this.props.notifications]
+        const notifications = [...this.props.notifications];
 
         return (
             <ScrollView bounces={false} showsVerticalScrollIndicator={false} style={styles.container}>
@@ -36,19 +37,19 @@ class index extends Component {
                 <Text style={styles.notiTitle}>Before that</Text>
                 <NotificationList notifications={notifications} />
             </ScrollView>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         notifications: state.notifications
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchNotifications: () => dispatch(FetchNotificationsRequest())
-    }
-}
+    };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(index);
 const styles = StyleSheet.create({
     container: {
@@ -80,4 +81,4 @@ const styles = StyleSheet.create({
         margin: 10,
         marginHorizontal: 20
     }
-})
+});

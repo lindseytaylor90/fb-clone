@@ -1,43 +1,44 @@
-import React, { PureComponent } from 'react'
-import { Text, StyleSheet, View, Image, TouchableOpacity, ScrollView } from 'react-native'
-import { connect } from 'react-redux'
-import { SCREEN_WIDTH, BASE_URL } from '../../constants'
-import * as navigation from '../../rootNavigation'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import PostTool from '../../components/PostTool'
-import FriendsShowing from '../../components/FriendsShowing'
-import HighlightPhotos from '../../components/HighlightPhotos'
-import ProfilePosts from '../../components/ProfilePosts'
+import React, { PureComponent } from 'react';
+import { Text, StyleSheet, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { SCREEN_WIDTH, BASE_URL } from '../../constants';
+import * as navigation from '../../rootNavigation';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import PostTool from '../../components/PostTool';
+import FriendsShowing from '../../components/FriendsShowing';
+import HighlightPhotos from '../../components/HighlightPhotos';
+import ProfilePosts from '../../components/ProfilePosts';
+
 class index extends PureComponent {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressEditPublicInfoHandler() {
-        const user = { ...this.props.user }
-        const highlightPhotos = [...this.props.highlightPhotos]
+        const user = { ...this.props.user };
+        const highlightPhotos = [...this.props.highlightPhotos];
         navigation.navigate("EditPublicInfo", {
             userInfo: user,
             highlightPhotos
-        })
+        });
     }
     scrollToTop() {
         this.refs._scrollView.scrollTo({
             x: 0,
             y: 0,
             animated: true
-        })
+        });
     }
     onPressAvatarOptionsHandler() {
-        navigation.navigate('AvatarOptions')
+        navigation.navigate('AvatarOptions');
     }
     onPressProfileSettingHandler(){
-        navigation.navigate('ProfileSetting')
+        navigation.navigate('ProfileSetting');
     }
     render() {
-        const { user, highlightPhotos, profilePosts } = this.props
-        if (!user.hasOwnProperty('id')) return <View></View>
-        const friends = [...this.props.friends]
-        console.log('Profile index.js');
+        const { user, highlightPhotos, profilePosts } = this.props;
+        if (!user.hasOwnProperty('id')) return <View></View>;
+        const friends = [...this.props.friends];
+
         return (
             <ScrollView ref="_scrollView" bounces={false} style={styles.container}>
                 <View style={styles.infoWrapper}>
@@ -136,7 +137,7 @@ class index extends PureComponent {
                             onPress={this.onPressEditPublicInfoHandler.bind(this)}
                             activeOpacity={0.8}
                             style={styles.btnEditPublicDetail}>
-                            <Text style={{ color: '#900c3f', fontSize: 16, fontWeight: '500' }}>Edit public info</Text>
+                            <Text style={{ color: '#ffff', fontSize: 16, fontWeight: '500' }}>Edit public info</Text>
                         </TouchableOpacity>
                     </View>
                     <FriendsShowing friends={friends} />
@@ -167,7 +168,7 @@ class index extends PureComponent {
                 </ScrollView >
                 <ProfilePosts highLightPhotos={highlightPhotos} profilePosts={profilePosts}></ProfilePosts>
             </ScrollView>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
@@ -311,7 +312,7 @@ const styles = StyleSheet.create({
     btnEditPublicDetail: {
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: '#9dd0eb',
+        backgroundColor: '#900c3f',
         width: '100%',
         height: 40,
         borderRadius: 5
@@ -382,4 +383,4 @@ const styles = StyleSheet.create({
         width: 30,
         alignItems: "center"
     }
-})
+});

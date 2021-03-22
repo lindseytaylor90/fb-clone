@@ -8,11 +8,11 @@ import { BASE_URL } from '../../constants';
 
 class RecommendItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isHidden: false
-        }
-        this._containerOpacity = new Animated.Value(1)
+        };
+        this._containerOpacity = new Animated.Value(1);
     }
     onPressHideHandler() {
         Animated.timing(this._containerOpacity, {
@@ -22,21 +22,22 @@ class RecommendItem extends Component {
             this.setState({
                 ...this.state,
                 isHidden: true
-            })
-        })
+            });
+        });
     }
     onPressProfileHandler(userId) {
-        const { user } = this.props
+        const { user } = this.props;
         if (userId === user.id) {
-            return navigation.navigate('Profile')
+            return navigation.navigate('Profile');
         }
         navigation.push('ProfileX', {
             userId
-        })
+        });
     }
     render() {
-        const containerOpacity = this._containerOpacity
-        const { info } = this.props
+        const containerOpacity = this._containerOpacity;
+        const { info } = this.props;
+
         return (
             <Animated.View style={{ ...styles.container, display: this.state.isHidden ? 'none' : 'flex', opacity: containerOpacity }}>
                 <View style={styles.itemWrapper}>
@@ -52,7 +53,7 @@ class RecommendItem extends Component {
                         </View>
                         <View style={styles.btnWrapper}>
                             <View style={styles.btnAddFr}>
-                                <FontAwesome5Icon.Button onPress={() => console.log('click add')} style={{ justifyContent: 'center' }} name="user-plus" size={20} color="white">Add Friend</FontAwesome5Icon.Button>
+                                <FontAwesome5Icon.Button onPress={() => console.log('click add')} style={{ justifyContent: 'center', backgroundColor: '#900c3f' }} name="user-plus" size={20} color="white">Add Friend</FontAwesome5Icon.Button>
                             </View>
                             <TouchableOpacity onPress={this.onPressHideHandler.bind(this)} style={styles.btnHide}>
                                 <Text>Hide</Text>
@@ -61,14 +62,14 @@ class RecommendItem extends Component {
                     </View>
                 </View>
             </Animated.View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         user: state.user.user
-    }
-}
+    };
+};
 export default connect(mapStateToProps, null)(RecommendItem);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
@@ -115,4 +116,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginLeft: 10,
     }
-})
+});

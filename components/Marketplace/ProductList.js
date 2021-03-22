@@ -1,61 +1,61 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import ProductItem from './ProductItem'
-import { productTypes } from '../../constants'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { connect } from 'react-redux'
-import ExTouchableOpacity from '../ExTouchableOpacity'
-import { navigation } from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
+import ProductItem from './ProductItem';
+import { productTypes } from '../../constants';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { connect } from 'react-redux';
+import ExTouchableOpacity from '../ExTouchableOpacity';
+import { navigation } from '../../rootNavigation';
 
 class ProductList extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressViewAllHandler() {
-        const { productType, products } = this.props
+        const { productType, products } = this.props;
         navigation.navigate('MarketplaceCategory', {
             products,
             productType
-        })
+        });
     }
     onPressAreaHandler(){
-        navigation.navigate('MarketplaceArea')
+        navigation.navigate('MarketplaceArea');
     }
     render() {
-        const { productType, user, products, isInCategory } = this.props
-        let previewProducts = [...products]
+        const { productType, user, products, isInCategory } = this.props;
+        let previewProducts = [...products];
         if (!isInCategory) {
             if (products.length > 4) {
-                previewProducts = previewProducts.splice(0, 4)
-            } else if (products.length > 2) previewProducts = previewProducts.splice(0, 2)
+                previewProducts = previewProducts.splice(0, 4);
+            } else if (products.length > 2) previewProducts = previewProducts.splice(0, 2);
         }
         const isShowMoreInfo = productTypes.RECOMMEND === productType || isInCategory;
         let categoryTitle;
         switch (productType) {
             case productTypes.RECOMMEND:
-                categoryTitle = 'Recommend today'
-                break
+                categoryTitle = 'Recommend today';
+                break;
             case productTypes.COMPUTER:
-                categoryTitle = 'Electronic & Computer'
-                break
+                categoryTitle = 'Electronic & Computer';
+                break;
             case productTypes.COMMON:
-                categoryTitle = 'Common'
-                break
+                categoryTitle = 'Common';
+                break;
             case productTypes.FURNITURE:
-                categoryTitle = 'Furniture'
-                break
+                categoryTitle = 'Furniture';
+                break;
             case productTypes.TOOL:
-                categoryTitle = 'Tool'
-                break
+                categoryTitle = 'Tool';
+                break;
             case productTypes.MY_AREA:
-                categoryTitle = 'Selling products in your area'
-                break
+                categoryTitle = 'Selling products in your area';
+                break;
             case productTypes.GARDEN:
-                categoryTitle = 'Garden'
-                break
+                categoryTitle = 'Garden';
+                break;
             case productTypes.MUSICAL_INSTRUMENT:
-                categoryTitle = 'Musical instrument'
-                break
+                categoryTitle = 'Musical instrument';
+                break;
         }
         return (
             <View style={styles.container}>
@@ -102,14 +102,14 @@ class ProductList extends Component {
                     </ExTouchableOpacity>
                 )}
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         user: state.user.user
-    }
-}
+    };
+};
 export default connect(mapStateToProps, null)(ProductList);
 const styles = StyleSheet.create({
     container: {
@@ -155,4 +155,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
+});

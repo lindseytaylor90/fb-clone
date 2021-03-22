@@ -1,26 +1,27 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, ImageBackground } from 'react-native'
-import { SCREEN_WIDTH } from '../../constants'
-import ExTouchableOpacity from '../ExTouchableOpacity'
-import { navigation } from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, ImageBackground } from 'react-native';
+import { SCREEN_WIDTH, BASE_URL } from '../../constants';
+import ExTouchableOpacity from '../ExTouchableOpacity';
+import { navigation } from '../../rootNavigation';
+
 export default class ProductItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressProductHandler() {
-        const item = { ...this.props.item }
+        const item = { ...this.props.item };
         navigation.navigate('MarketplaceProductDetail', {
             item
-        })
+        });
     }
     render() {
-        const { isShowMoreInfo, item } = this.props
-        const numberFormat = new Intl.NumberFormat('ja-JP')
+        const { isShowMoreInfo, item } = this.props;
+        const numberFormat = new Intl.NumberFormat('ja-JP');
         return (
             <ExTouchableOpacity
                 onPress={this.onPressProductHandler.bind(this)}
                 style={styles.container}>
-                <ImageBackground style={styles.bgContainer} source={{ uri: item.images[0] }}>
+                <ImageBackground style={styles.bgContainer} source={{ uri: BASE_URL + item.images[0] }}>
                     {!isShowMoreInfo && (
                         <View style={styles.priceWrapper}>
                             <Text style={{ color: '#fff', fontWeight: '500' }}>{numberFormat.format(item.price)} VND</Text>
@@ -34,7 +35,7 @@ export default class ProductItem extends Component {
                     </View>
                 )}
             </ExTouchableOpacity>
-        )
+        );
     }
 }
 
@@ -58,4 +59,4 @@ const styles = StyleSheet.create({
     moreInfo: {
         padding: 10
     }
-})
+});

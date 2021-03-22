@@ -1,50 +1,51 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native'
-import { STATUSBAR_HEIGHT, SCREEN_WIDTH, productTypes, SCREEN_HEIGHT } from '../../constants'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { navigation } from '../../rootNavigation'
-import { connect } from 'react-redux'
-import ProductList from '../../components/Marketplace/ProductList'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, ScrollView, TouchableOpacity } from 'react-native';
+import { STATUSBAR_HEIGHT, SCREEN_WIDTH, productTypes, SCREEN_HEIGHT } from '../../constants';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { navigation } from '../../rootNavigation';
+import { connect } from 'react-redux';
+import ProductList from '../../components/Marketplace/ProductList';
+
 class MarketplaceCategory extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressMarketplaceSearchHandler() {
-        navigation.push('MarketplaceSearch')
+        navigation.push('MarketplaceSearch');
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { products, productType, } = this.props.route.params
-        const { user } = this.props
-        let categoryTitle;
+        const { products, productType, } = this.props.route.params;
+        const { user } = this.props;
+        let categoryTitle;;
         switch (productType) {
             case productTypes.RECOMMEND:
-                categoryTitle = 'Recommend today'
-                break
+                categoryTitle = 'Recommend today';
+                break;
             case productTypes.COMPUTER:
-                categoryTitle = 'Electronic & Computer'
-                break
+                categoryTitle = 'Electronic & Computer';
+                break;
             case productTypes.COMMON:
-                categoryTitle = 'Common'
-                break
+                categoryTitle = 'Common';
+                break;
             case productTypes.FURNITURE:
-                categoryTitle = 'Furniture'
-                break
+                categoryTitle = 'Furniture';
+                break;
             case productTypes.TOOL:
-                categoryTitle = 'Tool'
-                break
+                categoryTitle = 'Tool';
+                break;
             case productTypes.MY_AREA:
-                categoryTitle = 'Selling products in your area'
-                break
+                categoryTitle = 'Selling products in your area';
+                break;
             case productTypes.GARDEN:
-                categoryTitle = 'Garden'
-                break
+                categoryTitle = 'Garden';
+                break;
             case productTypes.MUSICAL_INSTRUMENT:
-                categoryTitle = 'Musical instrument'
-                break
+                categoryTitle = 'Musical instrument';
+                break;
         }
         return (
             <View style={styles.container}>
@@ -102,8 +103,8 @@ class MarketplaceCategory extends Component {
 const mapStateToProps = state => {
     return {
         user: state.user.user
-    }
-}
+    };
+};
 export default connect(mapStateToProps, null)(MarketplaceCategory);
 const styles = StyleSheet.create({
     container: {
@@ -155,4 +156,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         backgroundColor: '#edf2fa'
     },
-})
+});

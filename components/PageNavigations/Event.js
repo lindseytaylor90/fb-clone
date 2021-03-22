@@ -1,15 +1,15 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import { connect } from 'react-redux'
-import { SCREEN_WIDTH } from '../../constants'
-import ExTouchableOpacity from '../ExTouchableOpacity'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
+import { connect } from 'react-redux';
+import { SCREEN_WIDTH } from '../../constants';
+import ExTouchableOpacity from '../ExTouchableOpacity';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 
 class Event extends Component {
     render() {
-        const { events } = this.props
-        const upcomingEvents = [...events].filter(event => event.isOverTime === false).splice(0, 3)
-        const pastEvents = [...events].filter(event => event.isOverTime === true).splice(0, 3)
+        const { events } = this.props;
+        const upcomingEvents = [...events].filter(event => event.isOverTime === false).splice(0, 3);
+        const pastEvents = [...events].filter(event => event.isOverTime === true).splice(0, 3);
         return (
             <View style={styles.container}>
                 <View style={styles.upcomingEventsWrapper}>
@@ -107,15 +107,15 @@ class Event extends Component {
                     </ExTouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         events: state.page.events
-    }
-}
-export default connect(mapStateToProps, null)(Event)
+    };
+};
+export default connect(mapStateToProps, null)(Event);
 const styles = StyleSheet.create({
     container: {
         marginVertical: 10
@@ -160,4 +160,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
+});

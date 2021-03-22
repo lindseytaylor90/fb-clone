@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+;import React, { Component } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, Image } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -11,25 +11,25 @@ import { BASE_URL } from '../../constants';
 
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
-        const { fetchGroups } = this.props
-        fetchGroups()
+        const { fetchGroups } = this.props;
+        fetchGroups();
     }
     onPressGroupSearchHandler() {
-        navigation.navigate('GroupSearch')
+        navigation.navigate('GroupSearch');
     }
     componentDidUpdate() {
     }
     onPressGoToGroupHandler(groupId) {
         navigation.navigate('GroupProfile', {
             id: groupId
-        })
+        });
     }
     render() {
-        const { groups } = this.props
-        if (groups.length === 0) return <View></View>
+        const { groups } = this.props;
+        if (groups.length === 0) return <View></View>;
         return (
             <View style={styles.container}>
                 <ScrollView bounces={false}>
@@ -93,20 +93,20 @@ class index extends Component {
                     <GroupPosts></GroupPosts>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         groups: state.groups
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchGroups: () => dispatch(FetchGroupsRequest())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(index)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(index);
 const styles = StyleSheet.create({
     container: {
 
@@ -203,4 +203,4 @@ const styles = StyleSheet.create({
         marginTop: 5,
         fontWeight: '500'
     }
-})
+});

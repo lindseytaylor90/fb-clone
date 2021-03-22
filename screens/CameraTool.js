@@ -5,52 +5,52 @@ import { SCREEN_WIDTH, SCREEN_HEIGHT, STATUSBAR_HEIGHT } from '../constants';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import { connect } from 'react-redux';
 import { navigation } from '../rootNavigation';
-
 import ExTouchableOpacity from '../components/ExTouchableOpacity';
+
 class CameraTool extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             type: Camera.Constants.Type.back,
             isOnFlash: false,
             isTaked: false,
             picture: {}
-        }
+        };
     }
     async componentDidMount() {
         const { status } = await Camera.requestPermissionsAsync();
         if (status === 'granted') {
 
-        } else Alert.alert('Can not access to camera')
+        } else Alert.alert('Can not access to camera');
     }
     onPressToggleFlashHandler() {
         this.setState({
             ...this.state,
             isOnFlash: !this.state.isOnFlash
-        })
+        });
     }
     async onPressTakePhotoHandler() {
-        const picture = await this.camera.takePictureAsync()
+        const picture = await this.camera.takePictureAsync();
         this.setState({
             isTaked: true,
             picture
-        })
+        });
     }
     onPressSwitchCameraHandler() {
         this.setState({
             ...this.state,
             type: this.state.type === Camera.Constants.Type.back ? Camera.Constants.Type.front : Camera.Constants.Type.back
-        })
+        });
     }
     onPressBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { type, isOnFlash } = this.state
-        const { systemImages } = this.props
-        const displayImageUri = systemImages[0]?.uri
-        const flashMode = isOnFlash ? Camera.Constants.FlashMode.on : Camera.Constants.FlashMode.off
-        const flashImage = isOnFlash ? require('../assets/icons/flash_on.png') : require('../assets/icons/flash_off.png')
+        const { type, isOnFlash } = this.state;
+        const { systemImages } = this.props;
+        const displayImageUri = systemImages[0]?.uri;
+        const flashMode = isOnFlash ? Camera.Constants.FlashMode.on : Camera.Constants.FlashMode.off;
+        const flashImage = isOnFlash ? require('../assets/icons/flash_on.png') : require('../assets/icons/flash_off.png');
         return (
             <View style={styles.container}>
                 {/* <StatusBar hidden={true} /> */}
@@ -95,14 +95,14 @@ class CameraTool extends Component {
                     </View>
                 </Camera>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         systemImages: state.systemImages
-    }
-}
+    };
+};
 export default connect(mapStateToProps)(CameraTool);
 const styles = StyleSheet.create({
     container: {
@@ -156,4 +156,4 @@ const styles = StyleSheet.create({
         width: 24,
         borderRadius: 5
     }
-})
+});

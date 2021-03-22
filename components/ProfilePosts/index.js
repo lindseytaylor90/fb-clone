@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import ProfilePostItem from './ProfilePostItem'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
+import ProfilePostItem from './ProfilePostItem';
 
 export default class index extends Component {
     render() {
-        const { profilePosts } = this.props
+        const { profilePosts } = this.props;
         if (profilePosts === undefined || profilePosts.length == 0) return (
             <View style={styles.container}>
                 <Text style={{ fontSize: 20, textAlign: "center" }}>This profile doesn't have any posts.</Text>
@@ -17,7 +17,7 @@ export default class index extends Component {
                 ))}
 
             </View>
-        )
+        );
     }
 }
 
@@ -31,4 +31,4 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ddd',
         borderBottomWidth: 1
     }
-})
+});

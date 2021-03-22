@@ -1,16 +1,17 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, StatusBar, ScrollView } from 'react-native'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { STATUSBAR_HEIGHT } from '../../constants'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import { navigation } from '../../rootNavigation'
-import { connect } from 'react-redux'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, StatusBar, ScrollView } from 'react-native';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { STATUSBAR_HEIGHT } from '../../constants';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import { navigation } from '../../rootNavigation';
+import { connect } from 'react-redux';
+
 class ProfileSetting extends Component {
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { user } = this.props
+        const { user } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.navigationBar}>
@@ -94,14 +95,14 @@ class ProfileSetting extends Component {
                     </View>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         user: state.user.user
-    }
-}
+    };
+};
 export default connect(mapStateToProps, null)(ProfileSetting);
 const styles = StyleSheet.create({
     container: {
@@ -185,4 +186,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
+});

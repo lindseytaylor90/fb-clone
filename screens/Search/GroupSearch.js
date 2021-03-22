@@ -1,29 +1,29 @@
-import React, { PureComponent } from 'react'
-import { TouchableOpacity, Text, StyleSheet, View, TextInput, SafeAreaView, Dimensions, Image } from 'react-native'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import * as navigation from '../../rootNavigation'
-import GroupCategories from '../../components/GroupCategories'
-import { FetchGroupHistoriesRequest } from '../../actions/historyActions'
-import { connect } from 'react-redux'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
+import React, { PureComponent } from 'react';
+import { TouchableOpacity, Text, StyleSheet, View, TextInput, SafeAreaView, Dimensions, Image } from 'react-native';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import * as navigation from '../../rootNavigation';
+import GroupCategories from '../../components/GroupCategories';
+import { FetchGroupHistoriesRequest } from '../../actions/historyActions';
+import { connect } from 'react-redux';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
 import { BASE_URL } from '../../constants';
 
 class GroupSearch extends PureComponent {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
-        const { fetchGroupHistories } = this.props
-        fetchGroupHistories()
+        const { fetchGroupHistories } = this.props;
+        fetchGroupHistories();
     }
     onPressGroupCategoriesHandler() {
-        navigation.push('GroupCategories')
+        navigation.push('GroupCategories');
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { groupHistories } = this.props
+        const { groupHistories } = this.props;
         return (
             <SafeAreaView style={styles.container}>
                 <View style={styles.searchToolWrapper}>
@@ -72,20 +72,20 @@ class GroupSearch extends PureComponent {
                     </ExTouchableOpacity>
                 </View>
             </SafeAreaView>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         groupHistories: state.history.groups
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchGroupHistories: () => dispatch(FetchGroupHistoriesRequest())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(GroupSearch)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(GroupSearch);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     container: {
@@ -149,4 +149,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
 
     }
-})
+});

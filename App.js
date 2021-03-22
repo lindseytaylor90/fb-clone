@@ -1,74 +1,74 @@
 import * as React from 'react';
-import { Provider } from 'react-redux'
-import store from './store'
+import { Provider } from 'react-redux';
+import store from './store';
 import { NavigationContainer, useIsFocused } from '@react-navigation/native';
 import { createStackNavigator, TransitionPresets } from '@react-navigation/stack';
-import Icon from 'react-native-vector-icons/FontAwesome5'
-import Home from './screens/Home'
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import Home from './screens/Home';
 import 'react-native-gesture-handler';
-import Comments from './screens/Comments'
-import CommentsPopUp from './screens/CommentsPopUp'
-import PostDetail from './screens/PostDetail'
-import SharePost from './screens/SharePost'
-import PostOptions from './screens/PostOptions'
-import { navigationRef } from './rootNavigation'
+import Comments from './screens/Comments';
+import CommentsPopUp from './screens/CommentsPopUp';
+import PostDetail from './screens/PostDetail';
+import SharePost from './screens/SharePost';
+import PostOptions from './screens/PostOptions';
+import { navigationRef } from './rootNavigation';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
-import axios from 'axios'
+import axios from 'axios';
 
-import NotificationScreen from './screens/NotificationTab'
-import NotificationOptions from './screens/NotificationTab/NotificationOptions'
+import NotificationScreen from './screens/NotificationTab';
+import NotificationOptions from './screens/NotificationTab/NotificationOptions';
 
-import PhotoChooser from './screens/PhotoChooser'
-import Camera from './screens/CameraTool'
+import PhotoChooser from './screens/PhotoChooser';
+import Camera from './screens/CameraTool';
 
-import Page from './screens/Pages'
-import PagePostDetail from './screens/Pages/PagePostDetail'
+import Page from './screens/Pages';
+import PagePostDetail from './screens/Pages/PagePostDetail';
 
-import WatchScreen from './screens/WatchTab'
-import WatchDetailList from './screens/WatchTab/WatchDetailList'
-import WatchOptions from './screens/WatchTab/WatchOptions'
-import WatchSearch from './screens/Search/WatchSearch'
+import WatchScreen from './screens/WatchTab';
+import WatchDetailList from './screens/WatchTab/WatchDetailList';
+import WatchOptions from './screens/WatchTab/WatchOptions';
+import WatchSearch from './screens/Search/WatchSearch';
 import WatchDetail from './screens/WatchTab/WatchDetail';
 
-import ShortCutScreen from './screens/ShortCutTab'
-import Marketplace from './screens/ShortCutTab/Marketplace'
-import MarketplaceArea from './screens/ShortCutTab/MarketplaceArea'
-import MarketplaceProductDetail from './screens/ShortCutTab/MarketplaceProductDetail'
-import MarketplaceCategory from './screens/ShortCutTab/MarketplaceCategory'
-import MarketplaceSearch from './screens/Search/MarketplaceSearch'
+import ShortCutScreen from './screens/ShortCutTab';
+import Marketplace from './screens/ShortCutTab/Marketplace';
+import MarketplaceArea from './screens/ShortCutTab/MarketplaceArea';
+import MarketplaceProductDetail from './screens/ShortCutTab/MarketplaceProductDetail';
+import MarketplaceCategory from './screens/ShortCutTab/MarketplaceCategory';
+import MarketplaceSearch from './screens/Search/MarketplaceSearch';
 
-import ProfileScreen from './screens/ProfileTab'
-import ProfileX from './screens/ProfileTab/ProfileX'
-import ProfileSetting from './screens/ProfileTab/ProfileSetting'
-import ProfilePostOptions from './screens/ProfileTab/ProfilePostOptions'
-import EditPublicInfo from './screens/ProfileTab/EditPublicInfo'
-import FullFriends from './screens/ProfileTab/FullFriends'
-import FriendOptions from './screens/ProfileTab/FriendOptions'
-import AvatarOptions from './screens/ProfileTab/AvatarOptions'
-import FindFriends from './screens/ProfileTab/FindFriends'
-import FriendRequests from './screens/ProfileTab/FriendRequests'
+import ProfileScreen from './screens/ProfileTab';
+import ProfileX from './screens/ProfileTab/ProfileX';
+import ProfileSetting from './screens/ProfileTab/ProfileSetting';
+import ProfilePostOptions from './screens/ProfileTab/ProfilePostOptions';
+import EditPublicInfo from './screens/ProfileTab/EditPublicInfo';
+import FullFriends from './screens/ProfileTab/FullFriends';
+import FriendOptions from './screens/ProfileTab/FriendOptions';
+import AvatarOptions from './screens/ProfileTab/AvatarOptions';
+import FindFriends from './screens/ProfileTab/FindFriends';
+import FriendRequests from './screens/ProfileTab/FriendRequests';
 
-import StoryDetailScreen from './screens/StoryDetail'
-import Search from './screens/Search/'
-import Result from './screens/Search/Result'
+import StoryDetailScreen from './screens/StoryDetail';
+import Search from './screens/Search/';
+import Result from './screens/Search/Result';
 
-import GroupSearch from './screens/Search/GroupSearch'
-import GroupCategory from './screens/GroupTab/GroupCategory'
-import GroupCategories from './screens/GroupTab/GroupCategories'
-import GroupProfile from './screens/GroupTab/Group'
-import GroupScreen from './screens/GroupTab'
+import GroupSearch from './screens/Search/GroupSearch';
+import GroupCategory from './screens/GroupTab/GroupCategory';
+import GroupCategories from './screens/GroupTab/GroupCategories';
+import GroupProfile from './screens/GroupTab/Group';
+import GroupScreen from './screens/GroupTab';
 
 const Tab = createMaterialTopTabNavigator();
 const Stack = createStackNavigator();
 const rootStack = createStackNavigator();
-import { FullPostTool, CheckIn, PhotoUploader, LiveStream } from './screens/PostTools/'
+import { FullPostTool, CheckIn, PhotoUploader, LiveStream } from './screens/PostTools/';
 import { Platform } from 'react-native';
-import CameraRoll from '@react-native-community/cameraroll'
-import { BASE_URL, STATUSBAR_HEIGHT } from './constants'
+import CameraRoll from '@react-native-community/cameraroll';
+import { BASE_URL, STATUSBAR_HEIGHT } from './constants';
 import SeenVideos from './screens/WatchTab/SeenVideos';
 
 
-axios.defaults.baseURL = BASE_URL
+axios.defaults.baseURL = BASE_URL;
 
 const homeTab = () => {
 	// CameraRoll.getPhotos({
@@ -83,48 +83,48 @@ const homeTab = () => {
 
 			<Stack.Screen options={{ cardStyle: { backgroundColor: 'transparent' } }} name="Comments" component={Comments} />
 		</Stack.Navigator>
-	)
-}
+	);
+};
 
 const groupTab = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="Group" component={GroupScreen} />
 		</Stack.Navigator>
-	)
-}
+	);
+};
 const WatchScreenWithIsFocused = (props) => {
 	const isFocused = useIsFocused();
 	return <WatchScreen {...props} isFocused={isFocused}></WatchScreen>;
-}
+};
 const watchTab = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="Watch" component={WatchScreenWithIsFocused} />
 		</Stack.Navigator>
-	)
-}
+	);
+};
 const profileTab = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="Profile" component={ProfileScreen} />
 		</Stack.Navigator>
-	)
-}
+	);
+};
 const notificationTab = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="Notification" component={NotificationScreen} />
 		</Stack.Navigator>
-	)
-}
+	);
+};
 const shortCutTab = () => {
 	return (
 		<Stack.Navigator screenOptions={{ headerShown: false }}>
 			<Stack.Screen name="ShortCutIndex" component={ShortCutScreen} />
 		</Stack.Navigator>
-	)
-}
+	);
+};
 const MainTab = () => {
 	const navigationOptions = {
 		style: {
@@ -132,7 +132,7 @@ const MainTab = () => {
 		},
 		showIcon: true,
 		showLabel: false,
-	}
+	};
 	return (
 		<Tab.Navigator tabBarOptions={navigationOptions}>
 			<Tab.Screen
@@ -158,15 +158,15 @@ const MainTab = () => {
 	);
 }
 function App() {
-	const TransitionPreset = Platform.OS === 'ios' ? TransitionPresets.ModalSlideFromBottomIOS : {}
+	const TransitionPreset = Platform.OS === 'ios' ? TransitionPresets.ModalSlideFromBottomIOS : {};
 	const navigationOptions = {
 		headerShown: false,
 		...TransitionPreset,
 		gestureResponseDistance: {
 			vertical: 800
 		}
-	}
-	console.log('ehllo');
+	};
+
 	return (
 		<Provider store={store}>
 			<NavigationContainer ref={navigationRef} >
@@ -222,6 +222,6 @@ function App() {
 				</rootStack.Navigator>
 			</NavigationContainer>
 		</Provider>
-	)
+	);
 }
 export default App;

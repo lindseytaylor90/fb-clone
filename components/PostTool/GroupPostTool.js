@@ -4,31 +4,32 @@ import { connect } from 'react-redux';
 import FontAweSome5 from 'react-native-vector-icons/FontAwesome5';
 import * as navigation from '../../rootNavigation';
 import { BASE_URL } from '../../constants';
+;
 class GroupPostTool extends Component {
     constructor(props) {
         super(props)
         this.state = {
             inputBgColor: "#fff"
-        }
+        };
     }
     onLiveStreamPressHandler() {
-        navigation.navigate('LiveStream')
+        navigation.navigate('LiveStream');
     }
     onPhotoUploaderPressHandler() {
-        navigation.navigate('PhotoUploader')
+        navigation.navigate('PhotoUploader');
     }
     onCheckInPressHandler() {
-        navigation.navigate('CheckIn')
+        navigation.navigate('CheckIn');
     }
     onFullPostToolPressHandler() {
-        const { groupDetail } = this.props
+        const { groupDetail } = this.props;
         navigation.navigate('FullPostTool', {
             isInGroup: true,
             groupDetail
-        })
+        });
     }
     render() {
-        const { user } = this.props
+        const { user } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.postToolWrapper}>
@@ -62,15 +63,15 @@ class GroupPostTool extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = (state) => {
     return {
         user: state.user.user
-    }
-}
-export default connect(mapStateToProps, null)(GroupPostTool)
+    };
+};
+export default connect(mapStateToProps, null)(GroupPostTool);
 const styles = StyleSheet.create({
     container: {
         borderTopColor: '#ddd',
@@ -132,4 +133,4 @@ const styles = StyleSheet.create({
     userAvatarWrapper: {
 
     }
-})
+});

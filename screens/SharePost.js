@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+;import React, { Component } from 'react';
 import { Keyboard, Text, StyleSheet, View, Dimensions, TouchableOpacity, Share, Image, KeyboardAvoidingView } from 'react-native';
 import * as navigation from '../rootNavigation';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -8,12 +8,12 @@ import { BASE_URL } from '../constants';
 
 class SharePost extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             shareOptionStyles: {
 
             }
-        }
+        };
     }
     componentDidMount() {
         this.keyboardDidShowListener = Keyboard.addListener('keyboardWillShow', this._keyboardWillShow.bind(this));
@@ -31,7 +31,7 @@ class SharePost extends Component {
                 display: 'none',
 
             }
-        })
+        });
     }
 
     _keyboardWillHide(event) {
@@ -41,13 +41,13 @@ class SharePost extends Component {
                 display: 'flex',
 
             }
-        })
+        });
     }
     onPressBackdropHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { user } = this.props
+        const { user } = this.props;
         return (
             <KeyboardAvoidingView enabled behavior="height" style={styles.container}>
                 <View style={styles.backdrop}>
@@ -137,9 +137,9 @@ class SharePost extends Component {
 const mapStateToProps = (state) => {
     return {
         user: state.user.user
-    }
-}
-export default connect(mapStateToProps, null)(SharePost)
+    };
+};
+export default connect(mapStateToProps, null)(SharePost);
 // export default SharePost
 const screenHeight = Math.round(Dimensions.get('window').height);
 const styles = StyleSheet.create({
@@ -240,4 +240,4 @@ const styles = StyleSheet.create({
     btn:{
         paddingHorizontal:20
     }
-})
+});

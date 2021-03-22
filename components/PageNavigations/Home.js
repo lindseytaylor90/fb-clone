@@ -11,23 +11,23 @@ import PagePostList from '../PagePostList';
 
 class Home extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressVideoDetailHandler(videoId) {
         navigation.navigate('WatchDetail', {
             id: videoId
-        })
+        });
     }
     onPressPhotoDetailHandler(postId) {
         navigation.navigate('PagePostDetail', {
             postId
-        })
+        });
     }
     render() {
-        const { page, videos, photos, posts } = this.props
-        const previewVideos = [...videos].splice(0, 4)
-        const previewPhotos = [...photos].splice(0, 4)
-        const fans = [...page.fans]
+        const { page, videos, photos, posts } = this.props;
+        const previewVideos = [...videos].splice(0, 4);
+        const previewPhotos = [...photos].splice(0, 4);
+        const fans = [...page.fans];
         return (
             <View style={styles.container}>
                 <View style={styles.topFansWrapper}>
@@ -243,7 +243,7 @@ class Home extends Component {
                                 style={{
                                     marginRight: index === previewPhotos.length - 1 ? 31 : 1
                                 }}>
-                                <Image style={styles.previewPhotoItem} source={{ uri: photo.image }} />
+                                <Image style={styles.previewPhotoItem} source={{ uri: BASE_URL + photo.image }} />
                             </ExTouchableOpacity>
                         ))}
 
@@ -257,7 +257,7 @@ class Home extends Component {
                 </View>
                 <PagePostList pagePosts={posts} />
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
@@ -265,8 +265,8 @@ const mapStateToProps = state => {
         videos: state.page.videos,
         photos: state.page.photos,
         posts: state.page.posts
-    }
-}
+    };
+};
 export default connect(mapStateToProps, null)(Home);
 const styles = StyleSheet.create({
     container: {
@@ -372,4 +372,4 @@ const styles = StyleSheet.create({
         paddingHorizontal: 15,
         paddingBottom: 10,
     }
-})
+});

@@ -3,12 +3,13 @@ import { Text, StyleSheet, View, Image } from 'react-native';
 import ExTouchableOpacity from '../ExTouchableOpacity';
 import * as navigation from '../../rootNavigation';
 import { BASE_URL } from '../../constants';
+
 export default class WatchSearchRecommendItem extends Component {
     onPressRecommendHandler() {
         // navigation.
     }
     render() {
-        const { recommend } = this.props
+        const { recommend } = this.props;
         return (
             <ExTouchableOpacity onPress={this.onPressRecommendHandler.bind(this)}>
                 <View style={styles.container}>
@@ -16,7 +17,7 @@ export default class WatchSearchRecommendItem extends Component {
                     <Text style={styles.recommendTxt}>{recommend.page.name}</Text>
                 </View>
             </ExTouchableOpacity>
-        )
+        );
     }
 }
 
@@ -39,4 +40,4 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: '500'
     }
-})
+});

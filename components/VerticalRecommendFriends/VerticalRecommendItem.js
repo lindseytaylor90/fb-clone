@@ -6,16 +6,17 @@ import { navigation } from '../../rootNavigation';
 
 export default class VerticalRecommendItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);;
     }
     onPressRecommendItemHandler() {
-        const { item } = this.props
+        const { item } = this.props;
         navigation.navigate('ProfileX', {
             userId: item.user.id
-        })
+        });
     }
     render() {
-        const { item } = this.props
+        const { item } = this.props;
+
         return (
             <ExTouchableOpacity
                 onPress={this.onPressRecommendItemHandler.bind(this)}
@@ -34,7 +35,7 @@ export default class VerticalRecommendItem extends Component {
                     </View>
                 </View>
             </ExTouchableOpacity>
-        )
+        );
     }
 }
 
@@ -83,4 +84,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#ddd'
     }
-})
+});

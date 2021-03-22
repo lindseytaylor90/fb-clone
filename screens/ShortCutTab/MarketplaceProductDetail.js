@@ -8,48 +8,48 @@ import { navigation } from '../../rootNavigation';
 
 export default class MarketplaceProductDetail extends Component {
     constructor(props) {
-        super(props)
-        this._titleOpacity = new Animated.Value(0)
+        super(props);
+        this._titleOpacity = new Animated.Value(0);
         this.state = {
             isOverLimitY: false
-        }
+        };
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressViewProfileHandler() {
-        const { item } = this.props.route.params
+        const { item } = this.props.route.params;
         navigation.push('ProfileX', {
             userId: item.user.id
-        })
+        });
     }
     onPressViewGroupDetailHandler(id) {
         navigation.push('GroupProfile', {
             id
-        })
+        });
     }
     onScrollHandler({ nativeEvent }) {
-        const offsetY = nativeEvent.contentOffset.y
+        const offsetY = nativeEvent.contentOffset.y;
         if (offsetY > 450) {
             if (!this.state.isOverLimitY) {
                 this.setState({
                     ...this.state,
                     isOverLimitY: true
-                })
+                });
             }
         } else {
             if (this.state.isOverLimitY) {
                 this.setState({
                     ...this.state,
                     isOverLimitY: false
-                })
+                });
             }
         }
-        this._titleOpacity.setValue(offsetY / 450)
+        this._titleOpacity.setValue(offsetY / 450);
     }
     render() {
-        const { item } = this.props.route.params
-        const numberFormat = new Intl.NumberFormat('ja-JP')
+        const { item } = this.props.route.params;
+        const numberFormat = new Intl.NumberFormat('ja-JP');
         return (
             <View style={styles.container}>
                 <View style={styles.statusBar} >
@@ -305,7 +305,7 @@ export default class MarketplaceProductDetail extends Component {
                 </ScrollView>
 
             </View>
-        )
+        );
     }
 }
 
@@ -436,4 +436,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5
     }
-})
+});

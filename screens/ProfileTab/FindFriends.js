@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+;import React, { Component } from 'react';
 import { Text, StyleSheet, View, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { connect } from 'react-redux';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
@@ -8,22 +8,22 @@ import { navigation } from '../../rootNavigation';
 
 class FindFriends extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressAllFriendsHandler() {
-        const { friends } = this.props
+        const { friends } = this.props;
         navigation.push('FullFriends', {
             friends
-        })
+        });
     }
     onPressFriendRequestsHandler() {
-        navigation.push('FriendRequests')
+        navigation.push('FriendRequests');
     }
     render() {
-        const { recommendFriends } = this.props
+        const { recommendFriends } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.navigationBar}>
@@ -74,16 +74,16 @@ class FindFriends extends Component {
                     </View>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const maptStateToProps = state => {
     return {
         recommendFriends: state.friends.recommendFriends,
         friends: state.user.friends,
-    }
-}
-export default connect(maptStateToProps, null)(FindFriends)
+    };
+};
+export default connect(maptStateToProps, null)(FindFriends);
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#fff",
@@ -181,4 +181,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#ddd'
     }
-})
+});

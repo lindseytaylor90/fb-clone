@@ -1,70 +1,72 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Animated } from 'react-native'
-import Modal from 'react-native-modal'
-import { connect } from 'react-redux'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import * as navigation from '../../rootNavigation'
-import { FetchPagePostDetailRequest } from '../../actions/pageDetailActions'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Animated } from 'react-native';
+import Modal from 'react-native-modal';
+import { connect } from 'react-redux';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import * as navigation from '../../rootNavigation';
+import { FetchPagePostDetailRequest } from '../../actions/pageDetailActions';
+import { BASE_URL } from '../../constants';
+
 class PostDetailModal extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             detailDisplay: 'flex'
-        }
-        this._isLiked = { isLiked: false }
-        this.optionBottom = new Animated.Value(-screenHeight)
+        };
+        this._isLiked = { isLiked: false };
+        this.optionBottom = new Animated.Value(-screenHeight);
     }
     componentDidMount() {
-        const { postId } = this.props.route.params
-        const { fetchPagePostDetail } = this.props
-        fetchPagePostDetail(postId)
+        const { postId } = this.props.route.params;
+        const { fetchPagePostDetail } = this.props;
+        fetchPagePostDetail(postId);
     }
     onPressOptionIconHandler() {
         Animated.timing(this.optionBottom, {
             toValue: 0,
             duration: 300
-        }).start()
+        }).start();
     }
     onPressProfileLinkHandler() {
 
     }
 
     onPressCommentsHandler() {
-        const { postDetail } = this.props
-        const { comments } = postDetail
+        const { postDetail } = this.props;
+        const { comments } = postDetail;
         navigation.navigate('CommentsPopUp', {
             comments
-        })
+        });
 
     }
     onPressHideDetailWrapperHandler() {
         this.setState({
             ...this.state,
             detailDisplay: this.state.detailDisplay === 'flex' ? 'none' : 'flex'
-        })
+        });
     }
     onPressBackdropOptionListHandler() {
         Animated.timing(this.optionBottom, {
             toValue: -screenHeight,
             duration: 400
-        }).start()
+        }).start();
     }
     onPressReactionValueHandler() {
 
     }
     render() {
-        const { postDetail } = this.props
-        if (!postDetail.hasOwnProperty('id')) return <View></View>
+        const { postDetail } = this.props;
+        if (!postDetail.hasOwnProperty('id')) return <View></View>;
         let reactionValue = 0;
         for (let emoji in postDetail.reactions) {
             reactionValue += postDetail.reactions[emoji];
         }
-        const optionBottom = this.optionBottom
+        const optionBottom = this.optionBottom;
         return (
             <TouchableWithoutFeedback onPress={this.onPressHideDetailWrapperHandler.bind(this)}>
                 <View style={styles.postWrapper}>
                     <View style={styles.imageWrapper}>
-                        <Image style={styles.image} resizeMode="contain" source={{ uri: postDetail.image }}>
+                        <Image style={styles.image} resizeMode="contain" source={{ uri: BASE_URL + postDetail.image }}>
                         </Image>
                     </View>
                     <View style={{ ...styles.optionIconWrapper, display: this.state.detailDisplay }}>
@@ -145,21 +147,21 @@ class PostDetailModal extends Component {
                     </View>
                 </View>
             </TouchableWithoutFeedback>
-        )
+        );
     }
 }
 const mapStateToProps = (state) => {
     return {
         postDetail: state.page.postDetail
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchPagePostDetail: (postId) => dispatch(FetchPagePostDetailRequest(postId))
-    }
-}
+    };
+};
 const screenHeight = Math.round(Dimensions.get('window').height);
-export default connect(mapStateToProps, mapDispatchToProps)(PostDetailModal)
+export default connect(mapStateToProps, mapDispatchToProps)(PostDetailModal);
 const styles = StyleSheet.create({
     postWrapper: {
         position: 'relative',
@@ -272,4 +274,4 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 
-})
+});

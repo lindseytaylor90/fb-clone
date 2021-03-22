@@ -1,23 +1,24 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, Clipboard } from 'react-native'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, Clipboard } from 'react-native';
 import Toast from 'react-native-root-toast';
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import * as navigation from '../../rootNavigation'
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import * as navigation from '../../rootNavigation';
 import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+
 export default class AvatarOptions extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isVisible: false
-        }
+        };
     }
     onPressSelectProfilePictureHandler() {
         navigation.navigate('PhotoChooser', {
             isMutiple: false
-        })
+        });
     }
     onPressBackdropHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
         return (
@@ -79,7 +80,7 @@ export default class AvatarOptions extends Component {
 
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -124,4 +125,4 @@ const styles = StyleSheet.create({
     postOptionSubtitle: {
         fontSize: 12
     }
-})
+});

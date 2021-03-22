@@ -11,51 +11,51 @@ import GroupPosts from '../../components/GroupPosts';
 
 class Group extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isScrollOverLimit: false,
-        }
-        this._groupTitleOpacity = new Animated.Value(0)
+        };
+        this._groupTitleOpacity = new Animated.Value(0);
     }
     componentDidMount() {
-        const { id } = this.props.route.params
-        const { fetchGroupDetail } = this.props
-        fetchGroupDetail(id)
+        const { id } = this.props.route.params;
+        const { fetchGroupDetail } = this.props;
+        fetchGroupDetail(id);
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onScrollHandler({ nativeEvent }) {
-        const { isScrollOverLimit } = this.state
-        const offsetY = nativeEvent.contentOffset.y
-        const limit = 250 - (STATUSBAR_HEIGHT + 50) //cover height - topbar height
+        const { isScrollOverLimit } = this.state;
+        const offsetY = nativeEvent.contentOffset.y;
+        const limit = 250 - (STATUSBAR_HEIGHT + 50); //cover height - topbar height
         if (offsetY > limit && isScrollOverLimit !== true) {
             Animated.timing(this._groupTitleOpacity, {
                 toValue: 1,
                 duration: 200
-            }).start()
+            }).start();
             this.setState({
                 ...this.state,
                 isScrollOverLimit: true
-            })
+            });
         }
         if (offsetY < limit && isScrollOverLimit !== false) {
             Animated.timing(this._groupTitleOpacity, {
                 toValue: 0,
                 duration: 200
-            }).start()
+            }).start();
             this.setState({
                 ...this.state,
                 isScrollOverLimit: false
-            })
+            });
         }
     }
     render() {
-        const groupTitleOpacity = this._groupTitleOpacity
-        const { groupDetail } = this.props
-        const { isScrollOverLimit } = this.state
-        if (!groupDetail.hasOwnProperty('id')) return <View></View>
-        const { friendsInGroup } = groupDetail
+        const groupTitleOpacity = this._groupTitleOpacity;
+        const { groupDetail } = this.props;
+        const { isScrollOverLimit } = this.state;
+        if (!groupDetail.hasOwnProperty('id')) return <View></View>;
+        const { friendsInGroup } = groupDetail;
         return (
             <View style={styles.container}>
                 <View style={{
@@ -148,19 +148,19 @@ class Group extends Component {
                     <GroupPosts isInGroup={true} groupId={groupDetail.id}></GroupPosts>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         groupDetail: state.groupDetail
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchGroupDetail: (id) => dispatch(FetchGroupDetailRequest(id))
-    }
-}
+    };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(Group);
 const styles = StyleSheet.create({
     container: {
@@ -276,4 +276,4 @@ const styles = StyleSheet.create({
     postToolWrapper: {
         marginBottom: 10
     }
-})
+});

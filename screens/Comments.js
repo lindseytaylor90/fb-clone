@@ -1,25 +1,26 @@
-import React, { Component } from 'react'
-import { Animated, View, Text, StyleSheet, TouchableOpacity, Dimensions, TextInput, KeyboardAvoidingView } from 'react-native'
-import { ScrollView, PanGestureHandler, State } from 'react-native-gesture-handler'
-import Comment from '../components/Comment'
-import * as navigation from '../rootNavigation'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { FIXED_STATUSBAR_HEIGHT } from '../constants'
+import React, { Component } from 'react';
+import { Animated, View, Text, StyleSheet, TouchableOpacity, Dimensions, TextInput, KeyboardAvoidingView } from 'react-native';
+import { ScrollView, PanGestureHandler, State } from 'react-native-gesture-handler';
+import Comment from '../components/Comment';
+import * as navigation from '../rootNavigation';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { FIXED_STATUSBAR_HEIGHT } from '../constants';
+
 export default class extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.ref = React.createRef();
         this.scrollRef = React.createRef();
         this.state = {
             enable: true,
             containerTop: 0,
         };
-        this._containerTop = new Animated.Value(0)
+        this._containerTop = new Animated.Value(0);
     }
     _onScrollDown(event) {
         if (!this.state.enable) return;
         const { translationY } = event.nativeEvent;
-        this._containerTop.setValue(translationY)
+        this._containerTop.setValue(translationY);
     }
 
     _onScroll({ nativeEvent }) {
@@ -38,9 +39,9 @@ export default class extends Component {
                 Animated.timing(this._containerTop, {
                     toValue: 0,
                     duration: 200,
-                }).start()
+                }).start();
             } else {
-                navigation.goBack()
+                navigation.goBack();
             }
         }
 
@@ -48,14 +49,14 @@ export default class extends Component {
     componentDidMount() {
     }
     onPressBtnBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onScrollHandler(event) {
     }
     render() {
         const { enable } = this.state;
-        const containerTop = this._containerTop
-        const { comments } = this.props.route.params
+        const containerTop = this._containerTop;
+        const { comments } = this.props.route.params;
         return (
             <View>
                 <View style={styles.backdrop}>
@@ -113,7 +114,7 @@ export default class extends Component {
         )
     }
 }
-const STACK_NAVBAR_HEIGHT = 48
+const STACK_NAVBAR_HEIGHT = 48;
 const screenWidth = Math.round(Dimensions.get('window').width);
 const screenHeight = Math.round(Dimensions.get('window').height);
 const styles = StyleSheet.create({
@@ -213,4 +214,4 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ddd',
         borderBottomWidth: 1
     }
-})
+});

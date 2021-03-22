@@ -11,38 +11,38 @@ import { SetFixedHeighWatchingVideo } from '../../actions/videoControlActions';
 
 class WatchItem extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressHandle() {
-        const { comments } = this.props.item
+        const { comments } = this.props.item;
         navigation.navigate('CommentsPopUp', {
             comments
-        })
+        });
     }
     onPressWatchOptionsIconHandler() {
-        const { item } = this.props
+        const { item } = this.props;
         navigation.navigate('WatchOptions', {
             watchDetail: item
-        })
+        });
     }
     onPressWatchVideoHandler(id, threadId) {
         navigation.navigate('WatchDetailList', {
             id,
             threadId
-        })
+        });
     }
     onPressShareHandler() {
-        const { item } = this.props
+        const { item } = this.props;
         navigation.navigate('SharePost', {
             id: item.id
-        })
+        });
     }
     onLayoutHandler({ nativeEvent }) {
-        const { setFixedHeighWatchingVideo } = this.props
-        setFixedHeighWatchingVideo(nativeEvent.layout.height)
+        const { setFixedHeighWatchingVideo } = this.props;
+        setFixedHeighWatchingVideo(nativeEvent.layout.height);
     }
     render() {
-        const { item, user } = this.props
+        const { item, user } = this.props;
         return (
             <View onLayout={this.onLayoutHandler.bind(this)} style={styles.item}>
                 <View style={{ flexDirection: 'row', alignItems: 'center' }}>
@@ -139,20 +139,20 @@ class WatchItem extends Component {
                     <TouchableOpacity><Icon style={styles.btnSendComment} name="paper-plane" color="gray"></Icon></TouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         user: state.user.user
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         setFixedHeighWatchingVideo: (height) => dispatch(SetFixedHeighWatchingVideo(height))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(WatchItem)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(WatchItem);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     customListView: {
@@ -245,4 +245,4 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         lineHeight: 30
     }
-})
+});

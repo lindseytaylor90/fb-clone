@@ -8,50 +8,50 @@ import { SCREEN_WIDTH, BASE_URL } from '../../constants';
 
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             isShowMore: false
-        }
-        this._maxOptionsHeight = 9 * 50
-        this._moreOptionsHeight = new Animated.Value(0)
+        };
+        this._maxOptionsHeight = 9 * 50;
+        this._moreOptionsHeight = new Animated.Value(0);
     }
     onPressViewMyProfileHandler() {
-        navigation.navigate('Profile')
+        navigation.navigate('Profile');
     }
     onPressFullFriendsHandler() {
-        const { friends } = this.props
-        navigation.navigate('FullFriends', { friends })
+        const { friends } = this.props;
+        navigation.navigate('FullFriends', { friends });
     }
     onPressWatchVideoHandler() {
-        navigation.navigate('Watch')
+        navigation.navigate('Watch');
     }
     onPressGroupsHandler() {
-        navigation.navigate('Group')
+        navigation.navigate('Group');
     }
     onpressFriendAroundHandler() {
-        navigation.navigate('FindFriends')
+        navigation.navigate('FindFriends');
     }
     onPressMarketplaceHandler() {
-        navigation.navigate('Marketplace')
+        navigation.navigate('Marketplace');
     }
     onPressToggleShowHandler() {
         if (this.state.isShowMore) {
             Animated.timing(this._moreOptionsHeight, {
                 toValue: 0,
                 duration: 400
-            }).start()
+            }).start();
         } else Animated.timing(this._moreOptionsHeight, {
             toValue: this._maxOptionsHeight,
             duration: 600
-        }).start()
+        }).start();
         this.setState({
             ...this.state,
             isShowMore: !this.state.isShowMore
-        })
+        });
     }
     render() {
-        const { user } = this.props
-        const { isShowMore } = this.state
+        const { user } = this.props;
+        const { isShowMore } = this.state;
         return (
             <View style={styles.container}>
                 <ScrollView bounces={false}>
@@ -220,15 +220,15 @@ class index extends Component {
                     </ExTouchableOpacity>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         user: state.user.user,
         friends: state.user.friends
-    }
-}
+    };
+};
 export default connect(mapStateToProps, null)(index);
 const styles = StyleSheet.create({
     container: {
@@ -270,4 +270,4 @@ const styles = StyleSheet.create({
     centerBtnShowMore: {
         width: SCREEN_WIDTH - 100
     }
-})
+});

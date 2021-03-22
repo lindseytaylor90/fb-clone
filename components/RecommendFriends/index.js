@@ -1,60 +1,60 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, ScrollView, TouchableOpacity, Dimensions } from 'react-native'
-import RecommendItem from './RecommendItem'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { connect } from 'react-redux'
-import { FetchRecommendFriendsRequest } from '../../actions/friendActions'
-import ExTouchableOpacity from '../ExTouchableOpacity'
-import { navigation } from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
+import RecommendItem from './RecommendItem';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { connect } from 'react-redux';
+import { FetchRecommendFriendsRequest } from '../../actions/friendActions';
+import ExTouchableOpacity from '../ExTouchableOpacity';
+import { navigation } from '../../rootNavigation';
 class index extends Component {
     constructor(props) {
-        super(props)
-        this._pivotX = 0
+        super(props);
+        this._pivotX = 0;
     }
     componentDidMount() {
-        const { fetchRecommendFriends } = this.props
-        fetchRecommendFriends()
+        const { fetchRecommendFriends } = this.props;
+        fetchRecommendFriends();
     }
     onPressViewAllRecommendsHandler() {
-        navigation.navigate('FindFriends')
+        navigation.navigate('FindFriends');
     }
     onScrollHandler(event) {
-        const offsetX = event.nativeEvent.contentOffset.x
+        const offsetX = event.nativeEvent.contentOffset.x;
         if (this._pivotX === offsetX) return;
-        const calculatedNumber = Math.floor(offsetX / (0.6 * 0.5 * screenWidth + 5))
+        const calculatedNumber = Math.floor(offsetX / (0.6 * 0.5 * screenWidth + 5));
         if (calculatedNumber > 0) {
             if (calculatedNumber == 1 && this._pivotX < offsetX) {
                 this.refs._scrollView.scrollTo({
                     y: 0,
                     x: 0.6 * screenWidth * 0.75 + 5,
                     animated: true
-                })
+                });
             } else if (calculatedNumber > 1) {
-                let nextStack = 0
+                let nextStack = 0;
                 if (calculatedNumber % 2 === 1) {
-                    nextStack = calculatedNumber
+                    nextStack = calculatedNumber;
                 } else {
-                    nextStack = calculatedNumber - 1
+                    nextStack = calculatedNumber - 1;
                 }
-                nextOffsetX = nextStack * (0.5 * 0.6 * screenWidth + 5) + (0.25 * 0.6 * screenWidth)
+                nextOffsetX = nextStack * (0.5 * 0.6 * screenWidth + 5) + (0.25 * 0.6 * screenWidth);
                 this.refs._scrollView.scrollTo({
                     y: 0,
                     x: nextOffsetX,
                     animated: true
-                })
+                });
             }
         } else {
             this.refs._scrollView.scrollTo({
                 y: 0,
                 x: 0,
                 animated: true
-            })
+            });
         }
-        this._pivotX = offsetX
+        this._pivotX = offsetX;
     }
     render() {
-        const { recommendFriends } = this.props
-        if (recommendFriends === undefined || recommendFriends.length === 0) return <View></View>
+        const { recommendFriends } = this.props;
+        if (recommendFriends === undefined || recommendFriends.length === 0) return <View></View>;
         return (
             <View style={styles.container}>
                 <View style={styles.headerWrapper}>
@@ -82,20 +82,20 @@ class index extends Component {
                     </ExTouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = (state) => {
     return {
         recommendFriends: state.friends.recommendFriends
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchRecommendFriends: () => dispatch(FetchRecommendFriendsRequest())
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(index)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(index);
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     container: {
@@ -132,4 +132,4 @@ const styles = StyleSheet.create({
         marginLeft: 5,
         fontWeight: "100"
     }
-})
+});

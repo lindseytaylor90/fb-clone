@@ -3,12 +3,13 @@ import { View, Text, Image, StyleSheet, ImageBackground, TouchableOpacity } from
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import ScaledImage from '../../ScaledImage';
 import { BASE_URL } from '../../../constants';
+
 export default class StoryAdder extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     render() {
-        const { user } = this.props
+        const { user } = this.props;
         return (
             <View style={styles.container}>
                 <TouchableOpacity activeOpacity={0.8}>
@@ -23,7 +24,7 @@ export default class StoryAdder extends Component {
                 </TouchableOpacity>
 
             </View>
-        )
+        );
     }
 }
 const styles = StyleSheet.create({
@@ -66,4 +67,4 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginLeft: 10
     }
-})
+});

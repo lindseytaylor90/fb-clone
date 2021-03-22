@@ -10,31 +10,31 @@ import { PushThreadHeightMap } from '../../actions/watchVideosActions';
 
 class VideoThreadItem extends Component {
     constructor(props) {
-        super(props)
-        this._videoRef = {}
+        super(props);
+        this._videoRef = {};
         this.optionsLayout = new Animated.ValueXY({
             x: 0,
             y: 0
-        })
-        this._isShowOptions = false
-        this.threadHeightMap = []
+        });
+        this._isShowOptions = false;
+        this.threadHeightMap = [];
     }
     onRefReadyHandler(ref) {
-        this._videoRef = ref
+        this._videoRef = ref;
     }
     componentDidMount() {
     }
     componentWillUnmount() {
-        this.threadHeightMap = []
+        this.threadHeightMap = [];
     }
     shouldComponentUpdate(nextProps, nextState) {
-        let { video } = this.props
-        const { threadWatchingController } = nextProps
-        this.threadHeightMap = nextProps.threadHeightMap
-        let nextVideo = { ...nextProps.video }
-        if (threadWatchingController.playingId === video.id && threadWatchingController.isPlaying) this._videoRef.play()
-        else this._videoRef.pause()
-        return JSON.stringify(video) !== JSON.stringify(nextVideo)
+        let { video } = this.props;
+        const { threadWatchingController } = nextProps;
+        this.threadHeightMap = nextProps.threadHeightMap;
+        let nextVideo = { ...nextProps.video };
+        if (threadWatchingController.playingId === video.id && threadWatchingController.isPlaying) this._videoRef.play();
+        else this._videoRef.pause();
+        return JSON.stringify(video) !== JSON.stringify(nextVideo);
     }
     onPressToggleControllerHandler() {
         
@@ -46,52 +46,52 @@ class VideoThreadItem extends Component {
     }
 
     onPressCommentsHandler() {
-        const { video } = this.props
-        const { comments } = video
+        const { video } = this.props;
+        const { comments } = video;
         navigation.navigate('CommentsPopUp', {
             comments
-        })
+        });
     }
     onPressOptionIconHandler() {
         if (this._isShowOptions) {
-            this._isShowOptions = false
+            this._isShowOptions = false;
             Animated.timing(this.optionsLayout, {
                 toValue: {
                     x: 0,
                     y: 0
                 },
                 duration: 400
-            }).start()
+            }).start();
         } else {
-            this._isShowOptions = true
+            this._isShowOptions = true;
             Animated.spring(this.optionsLayout, {
                 toValue: {
                     x: SCREEN_WIDTH * 0.6,
                     y: 340
                 },
                 duration: 400
-            }).start()
+            }).start();
         }
 
     }
     onThreadItemLayoutHandler({ nativeEvent }) {
-        const { height } = nativeEvent.layout
-        const { video, pushThreadHeightMap } = this.props
+        const { height } = nativeEvent.layout;
+        const { video, pushThreadHeightMap } = this.props;
         if (typeof pushThreadHeightMap === 'function') {
-            pushThreadHeightMap(video.id, height)
+            pushThreadHeightMap(video.id, height);
         }
     }
     onFinishHandler() {
-        const { video, scrollToItem } = this.props
-        const videoId = video.id
-        scrollToItem(videoId)
+        const { video, scrollToItem } = this.props;
+        const videoId = video.id;
+        scrollToItem(videoId);
     }
     render() {
-        console.log("render")
-        const { video, threadWatchingController } = this.props
+        console.log("render");
+        const { video, threadWatchingController } = this.props;
         let shouldPlay = false;
-        shouldPlay = threadWatchingController.playingId === video.id && threadWatchingController.isPlaying
-        const source = { uri: video.video.video_url }
+        shouldPlay = threadWatchingController.playingId === video.id && threadWatchingController.isPlaying;
+        const source = { uri: video.video.video_url };
         let reactionValue = 0;
         for (let emoji in video.reactions) {
             reactionValue += video.reactions[emoji];
@@ -266,14 +266,14 @@ const mapStateToProps = state => {
     return {
         threadWatchingController: state.watch.threadWatchingController,
         threadHeightMap: state.watch.threadHeightMap
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         pushThreadHeightMap: (videoId, height) => dispatch(PushThreadHeightMap(videoId, height))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(VideoThreadItem)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(VideoThreadItem);
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#060807',
@@ -390,4 +390,4 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 
-})
+});

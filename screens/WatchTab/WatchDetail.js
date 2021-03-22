@@ -1,77 +1,78 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Animated } from 'react-native'
-import { connect, useSelector } from 'react-redux'
-import { FetchWatchVideoDetailRequest, SetCurrentWatchingPosition } from '../../actions/watchVideosActions'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import * as navigation from '../../rootNavigation'
-import { Video } from 'expo-av'
-import { SCREEN_WIDTH, SCREEN_HEIGHT, BASE_URL } from '../../constants'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import { PanGestureHandler, State } from 'react-native-gesture-handler'
-import VideoPlayer from '../../components/VideoPlayer'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, Image, TouchableOpacity, TouchableWithoutFeedback, Dimensions, Animated } from 'react-native';
+import { connect, useSelector } from 'react-redux';
+import { FetchWatchVideoDetailRequest, SetCurrentWatchingPosition } from '../../actions/watchVideosActions';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import * as navigation from '../../rootNavigation';
+import { Video } from 'expo-av';
+import { SCREEN_WIDTH, SCREEN_HEIGHT, BASE_URL } from '../../constants';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import VideoPlayer from '../../components/VideoPlayer';
+
 class WatchDetail extends Component {
     constructor(props) {
-        super(props)
-        this._videoRef = {}
-        this._infoOpacity = new Animated.Value(1)
-        this._isLiked = false
-        this._isCalledGoBack = false
-        this._isShowInfo = true
+        super(props);
+        this._videoRef = {};
+        this._infoOpacity = new Animated.Value(1);
+        this._isLiked = false;
+        this._isCalledGoBack = false;
+        this._isShowInfo = true;
     }
     componentDidMount() {
-        const { id } = this.props.route.params
-        const { fetchWatchVideoDetail } = this.props
-        fetchWatchVideoDetail(id)
+        const { id } = this.props.route.params;
+        const { fetchWatchVideoDetail } = this.props;
+        fetchWatchVideoDetail(id);
     }
 
     onPressCommentsHandler() {
-        const { watchingVideo } = this.props
-        const { comments } = watchingVideo
+        const { watchingVideo } = this.props;
+        const { comments } = watchingVideo;
         navigation.navigate('CommentsPopUp', {
             comments
-        })
+        });
     }
     onPressHideDetailWrapperHandler() {
-        console.log(Math.random())
+        console.log(Math.random());
 
         if (this._isShowInfo) {
-            this._isShowInfo = false
-            this._infoOpacity.setValue(0)
-            this._videoRef.hideController()
+            this._isShowInfo = false;
+            this._infoOpacity.setValue(0);
+            this._videoRef.hideController();
         } else {
-            this._isShowInfo = true
-            this._infoOpacity.setValue(1)
-            this._videoRef.showController()
+            this._isShowInfo = true;
+            this._infoOpacity.setValue(1);
+            this._videoRef.showController();
         }
     }
     onShowControllerHandler() {
-        this._infoOpacity.setValue(1)
-        this._isShowInfo = true
+        this._infoOpacity.setValue(1);
+        this._isShowInfo = true;
     }
     onHideControllerHandler() {
-        this._infoOpacity.setValue(0)
-        this._isShowInfo = false
+        this._infoOpacity.setValue(0);
+        this._isShowInfo = false;
     }
     onPauseHandler() {
-        // this._infoOpacity.setValue(1)
-        // this._isShowInfo = true
+        // this._infoOpacity.setValue(1);
+        // this._isShowInfo = true;
     }
     onPlayHandler() {
-        // this._infoOpacity.setValue(0)
-        // this._videoRef.hideController()
+        // this._infoOpacity.setValue(0);
+        // this._videoRef.hideController();
     }
     onFinishHandler() {
         if (!this._isCalledGoBack) {
-            navigation.goBack()
-            this._isCalledGoBack = true
+            navigation.goBack();
+            this._isCalledGoBack = true;
         }
     }
     onRefReadyHandler(ref) {
-        this._videoRef = ref
+        this._videoRef = ref;
     }
     render() {
-        const { watchingVideo } = this.props
-        if (!watchingVideo.hasOwnProperty("id")) return <View></View>
+        const { watchingVideo } = this.props;
+        if (!watchingVideo.hasOwnProperty("id")) return <View></View>;
         let reactionValue = 0;
         for (let emoji in watchingVideo.reactions) {
             reactionValue += watchingVideo.reactions[emoji];
@@ -158,20 +159,20 @@ class WatchDetail extends Component {
                     </View>
                 </View>
             </TouchableWithoutFeedback>
-        )
+        );
     }
 }
 const mapStateToProps = (state) => {
     return {
         watchingVideo: state.watch.watchVideoDetail
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchWatchVideoDetail: (id) => dispatch(FetchWatchVideoDetailRequest(id))
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(WatchDetail)
+    };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(WatchDetail);
 const styles = StyleSheet.create({
     postWrapper: {
         width: '100%',
@@ -274,4 +275,4 @@ const styles = StyleSheet.create({
         alignItems: 'center'
     }
 
-})
+});

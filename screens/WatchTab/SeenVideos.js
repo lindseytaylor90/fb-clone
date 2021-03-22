@@ -1,26 +1,27 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, ScrollView } from 'react-native'
-import SeenVideoItem from '../../components/SeenVideoItem'
-import { connect } from 'react-redux'
-import { FetchSeenWatchVideosRequest } from '../../actions/watchVideosActions'
-import { SCREEN_WIDTH, SCREEN_HEIGHT, STATUSBAR_HEIGHT } from '../../constants'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import * as navigation from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, ScrollView } from 'react-native';
+import SeenVideoItem from '../../components/SeenVideoItem';
+import { connect } from 'react-redux';
+import { FetchSeenWatchVideosRequest } from '../../actions/watchVideosActions';
+import { SCREEN_WIDTH, SCREEN_HEIGHT, STATUSBAR_HEIGHT } from '../../constants';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import * as navigation from '../../rootNavigation';
+
 class SeenVideos extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
-        const { fetchSeenWatchVideos } = this.props
-        fetchSeenWatchVideos()
+        const { fetchSeenWatchVideos } = this.props;
+        fetchSeenWatchVideos();
     }
     onPressBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { seenVideos } = this.props
-        if (seenVideos.length === 0) return <View></View>
+        const { seenVideos } = this.props;
+        if (seenVideos.length === 0) return <View></View>;
         return (
             <View style={styles.container}>
                 <View style={styles.statusBar}>
@@ -40,19 +41,19 @@ class SeenVideos extends Component {
                     ))}
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         seenVideos: state.watch.seenWatchVideos
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchSeenWatchVideos: () => dispatch(FetchSeenWatchVideosRequest())
-    }
-}
+    };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(SeenVideos);
 const styles = StyleSheet.create({
     container: {
@@ -85,4 +86,4 @@ const styles = StyleSheet.create({
         // marginBottom: 101.5,
         height: SCREEN_HEIGHT - (STATUSBAR_HEIGHT + 50) - 15 //topBarHeight marginVertical
     }
-})
+});

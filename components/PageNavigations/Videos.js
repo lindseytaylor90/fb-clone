@@ -1,27 +1,27 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, Image } from 'react-native'
-import { Video } from 'expo-av'
-import { connect } from 'react-redux'
-import { SCREEN_WIDTH } from '../../constants'
-import ExTouchableOpacity from '../ExTouchableOpacity'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { navigation } from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, Image } from 'react-native';
+import { Video } from 'expo-av';
+import { connect } from 'react-redux';
+import { SCREEN_WIDTH } from '../../constants';
+import ExTouchableOpacity from '../ExTouchableOpacity';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { navigation } from '../../rootNavigation';
 
 class Videos extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressWatchVideoHandler(id, threadId) {
         navigation.navigate('WatchDetailList', {
             id,
             threadId
-        })
+        });
     }
     render() {
-        const { videos } = this.props
-        if(videos.length===0) return <View></View>
-        const mostPopularVideo = videos.filter(video => video.isPopular === true)[0]
-        let reactionValue = 0;
+        const { videos } = this.props;
+        if(videos.length===0) return <View></View>;
+        const mostPopularVideo = videos.filter(video => video.isPopular === true)[0];
+        let reactionValue = 0;;
         for (let emoji in mostPopularVideo.reactions) {
             reactionValue += mostPopularVideo.reactions[emoji];
         }
@@ -128,15 +128,15 @@ class Videos extends Component {
                     </View>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         videos: state.page.videos
-    }
-}
-export default connect(mapStateToProps, null)(Videos)
+    };
+};
+export default connect(mapStateToProps, null)(Videos);
 const styles = StyleSheet.create({
     container: {
         marginVertical: 10,
@@ -187,4 +187,4 @@ const styles = StyleSheet.create({
     videoInfoWrapper: {
         paddingHorizontal: 10
     }
-})
+});

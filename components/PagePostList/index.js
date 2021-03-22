@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import PagePostItem from './PagePostItem'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
+import PagePostItem from './PagePostItem';
 
 export default class index extends Component {
     render() {
-        const { pagePosts } = this.props
+        const { pagePosts } = this.props;
         if (pagePosts === undefined || pagePosts.length == 0) return (
             <View style={styles.container}>
                 <Text style={{ fontSize: 20, textAlign: "center" }}>This page doesn't have any posts.</Text>
@@ -17,7 +17,7 @@ export default class index extends Component {
                 ))}
 
             </View>
-        )
+        );
     }
 }
 
@@ -30,4 +30,4 @@ const styles = StyleSheet.create({
         borderBottomColor: '#ddd',
         borderBottomWidth: 1
     }
-})
+});

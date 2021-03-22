@@ -9,11 +9,11 @@ import { FetchFriendRequestsRequest } from '../../actions/friendActions';
 
 class FriendRequests extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
-        const { fetchFriendRequest } = this.props
-        fetchFriendRequest()
+        const { fetchFriendRequest } = this.props;
+        fetchFriendRequest();
     }
     onPressRemoveFriendRequest(index) {
 
@@ -21,14 +21,14 @@ class FriendRequests extends Component {
     onPressProfileHandler(userId) {
         navigation.push("ProfileX", {
             userId
-        })
+        });
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        let { friendRequests } = this.props
-        if (friendRequests.length === 0) return <View></View>
+        let { friendRequests } = this.props;
+        if (friendRequests.length === 0) return <View></View>;
         return (
             <View style={styles.container}>
                 <View style={styles.navigationBar}>
@@ -72,20 +72,20 @@ class FriendRequests extends Component {
                     </View>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const maptStateToProps = state => {
     return {
         friendRequests: state.friends.friendRequests,
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchFriendRequest: () => dispatch(FetchFriendRequestsRequest())
-    }
-}
-export default connect(maptStateToProps, mapDispatchToProps)(FriendRequests)
+    };
+};
+export default connect(maptStateToProps, mapDispatchToProps)(FriendRequests);
 const styles = StyleSheet.create({
     container: {
         backgroundColor: "#fff",
@@ -183,4 +183,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         backgroundColor: '#ddd'
     }
-})
+});

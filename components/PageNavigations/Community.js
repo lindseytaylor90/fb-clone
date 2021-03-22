@@ -7,18 +7,18 @@ import { navigation } from '../../rootNavigation';
 
 export default class Community extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressProfileXHandler(userId) {
         navigation.navigate('ProfileX', {
             userId
-        })
+        });
     }
     render() {
-        const { page } = this.props
-        const fans = [...page.fans].splice(0, 3)
-        const friendsLikePage = [...page.friendsLikePage].splice(0, 6)
-        const previewFriendLikepage = [...page.friendsLikePage].splice(0, 3)
+        const { page } = this.props;
+        const fans = [...page.fans].splice(0, 3);
+        const friendsLikePage = [...page.friendsLikePage].splice(0, 6);
+        const previewFriendLikepage = [...page.friendsLikePage].splice(0, 3);
         return (
             <View style={styles.container}>
                 <View style={styles.topFansWrapper}>
@@ -198,7 +198,7 @@ export default class Community extends Component {
                     </ExTouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 
@@ -321,4 +321,4 @@ const styles = StyleSheet.create({
         width: 50,
         borderRadius: 50
     }
-})
+});

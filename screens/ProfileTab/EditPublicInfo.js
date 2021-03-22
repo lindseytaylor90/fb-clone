@@ -8,13 +8,13 @@ import ExTouchableOpacity from '../../components/ExTouchableOpacity';
 
 export default class EditPublicInfo extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     render() {
-        const { userInfo, highlightPhotos } = this.props.route.params
+        const { userInfo, highlightPhotos } = this.props.route.params;
         return (
             <View style={styles.container}>
                 <View style={styles.navigationBar}>
@@ -151,7 +151,7 @@ export default class EditPublicInfo extends Component {
                     </View>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 
@@ -243,4 +243,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         borderRadius: 5
     }
-})
+});

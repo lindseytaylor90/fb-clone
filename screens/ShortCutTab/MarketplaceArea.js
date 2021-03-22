@@ -1,28 +1,29 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, TextInput, Platform, Animated, TouchableWithoutFeedback } from 'react-native'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { STATUSBAR_HEIGHT, SCREEN_WIDTH } from '../../constants'
-import MapView from 'react-native-maps'
-import { connect } from 'react-redux'
-import { navigation } from '../../rootNavigation'
-import { PanGestureHandler, State } from 'react-native-gesture-handler'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, TextInput, Platform, Animated, TouchableWithoutFeedback } from 'react-native';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { STATUSBAR_HEIGHT, SCREEN_WIDTH } from '../../constants';
+import MapView from 'react-native-maps';
+import { connect } from 'react-redux';
+import { navigation } from '../../rootNavigation';
+import { PanGestureHandler, State } from 'react-native-gesture-handler';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+
 class MarketplaceArea extends Component {
     constructor(props) {
-        super(props)
-        this.mapRef = React.createRef()
-        this._areaRangeSize = new Animated.Value(100)
-        this._FIXED_MAP_HEIGHT = 250
-        this._prevZoomPercent = 0.2
+        super(props);
+        this.mapRef = React.createRef();
+        this._areaRangeSize = new Animated.Value(100);
+        this._FIXED_MAP_HEIGHT = 250;
+        this._prevZoomPercent = 0.2;
         this.state = {
             longitudeDelta: 0.1,
             latitudeDelta: 0.2,
             selectedOptionType: 1,
             curRadius: 100,
-        }
-        this._curWidth = 100
-        this._playedWidth = new Animated.Value(100)
-        this._maxRadius = 300
+        };
+        this._curWidth = 100;
+        this._playedWidth = new Animated.Value(100);
+        this._maxRadius = 300;
     }
     onRegionChangeHandler(region) {
         // const { latitudeDelta, latitude, longitude, longitudeDelta } = region
@@ -36,55 +37,55 @@ class MarketplaceArea extends Component {
     }
     onPressChangeOption(type) {
         if (type === 1) {
-            this._playedWidth.setValue(100)
+            this._playedWidth.setValue(100);
             this.setState({
                 ...this.state,
                 curRadius: 100,
                 selectedOptionType: type
-            })
+            });
         } else {
             this.setState({
                 ...this.state,
                 selectedOptionType: type
-            })
+            });
         }
 
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onGestureEventHandler({ nativeEvent }) {
-        const { selectedOptionType } = this.state
+        const { selectedOptionType } = this.state;
         if (selectedOptionType === 1) return;
-        const { translationX } = nativeEvent
+        const { translationX } = nativeEvent;
         if (this._curWidth + translationX < 0
             || this._curWidth + translationX > MAX_SLIDER_WIDTH) return;
         else {
-            this._playedWidth.setValue(this._curWidth + translationX)
+            this._playedWidth.setValue(this._curWidth + translationX);
         }
     }
     onHandlerStateChangeHandler({ nativeEvent }) {
-        const { selectedOptionType } = this.state
+        const { selectedOptionType } = this.state;
         if (selectedOptionType === 1) return;
-        const { translationX, state } = nativeEvent
+        const { translationX, state } = nativeEvent;
         if (state === State.END) {
-            let nextRadius = Math.round((this._curWidth + translationX) / MAX_SLIDER_WIDTH * this._maxRadius)
-            nextRadius = nextRadius < 0 ? 0 : (nextRadius > this._maxRadius ? this._maxRadius : nextRadius)
-            this._curWidth += translationX
-            this._curWidth = this._curWidth < 0 ? 0 : (this._curWidth > MAX_SLIDER_WIDTH ? MAX_SLIDER_WIDTH : this._curWidth)
-            this._areaRangeSize.setValue(this._curWidth)
+            let nextRadius = Math.round((this._curWidth + translationX) / MAX_SLIDER_WIDTH * this._maxRadius);
+            nextRadius = nextRadius < 0 ? 0 : (nextRadius > this._maxRadius ? this._maxRadius : nextRadius);
+            this._curWidth += translationX;
+            this._curWidth = this._curWidth < 0 ? 0 : (this._curWidth > MAX_SLIDER_WIDTH ? MAX_SLIDER_WIDTH : this._curWidth);
+            this._areaRangeSize.setValue(this._curWidth);
             this.setState({
                 ...this.state,
                 curRadius: nextRadius
-            })
+            });
 
 
         }
     }
     render() {
-        const { longitudeDelta, latitudeDelta, selectedOptionType, curRadius } = this.state
-        const { user } = this.props
-        const { myCoordinates } = user
+        const { longitudeDelta, latitudeDelta, selectedOptionType, curRadius } = this.state;
+        const { user } = this.props;
+        const { myCoordinates } = user;
         return (
             <View style={styles.container}>
                 <View style={styles.navigationBar}>
@@ -211,16 +212,16 @@ class MarketplaceArea extends Component {
                     </View>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         user: state.user.user
-    }
-}
+    };
+};
 export default connect(mapStateToProps, null)(MarketplaceArea);
-const MAX_SLIDER_WIDTH = SCREEN_WIDTH - 90 - 30
+const MAX_SLIDER_WIDTH = SCREEN_WIDTH - 90 - 30;
 const styles = StyleSheet.create({
     container: {
         backgroundColor: '#fff'
@@ -341,4 +342,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#900c3f',
         borderRadius: 5
     }
-})
+});

@@ -1,22 +1,23 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View } from 'react-native'
-import { Video } from 'expo-av'
-import { SCREEN_WIDTH } from '../../constants'
-import ExTouchableOpacity from '../ExTouchableOpacity'
-import { navigate } from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View } from 'react-native';
+import { Video } from 'expo-av';
+import { SCREEN_WIDTH } from '../../constants';
+import ExTouchableOpacity from '../ExTouchableOpacity';
+import { navigate } from '../../rootNavigation';
+
 export default class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressWatchVideoDetail() {
-        const { item } = this.props
+        const { item } = this.props;
         navigate('WatchDetail', {
             id: item.id
-        })
+        });
     }
     render() {
-        const { item } = this.props
-        const { video } = item
+        const { item } = this.props;
+        const { video } = item;
         return (
             <ExTouchableOpacity onPress={this.onPressWatchVideoDetail.bind(this)} style={styles.container}>
                 <View style={styles.videoWrapper}>
@@ -39,7 +40,7 @@ export default class index extends Component {
                     <Text style={styles.view}>{item.seeCount > 1000 ? Math.round(item.seeCount / 1000) + 'k' : item.seeCount} views</Text>
                 </View>
             </ExTouchableOpacity>
-        )
+        );
     }
 }
 
@@ -79,4 +80,4 @@ const styles = StyleSheet.create({
         borderRadius: 2.5,
         paddingHorizontal: 2.5
     }
-})
+});

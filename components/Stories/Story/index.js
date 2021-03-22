@@ -3,29 +3,30 @@ import { View, Text, Image, StyleSheet, ImageBackground, TouchableOpacity } from
 import * as navigation from '../../../rootNavigation';
 import { TabActions } from '@react-navigation/native';
 import { BASE_URL } from '../../../constants';
+
 export default class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressHandle() {
-        console.log("click")
-        const { story, position } = this.props
+        console.log("click");
+        const { story, position } = this.props;
         navigation.navigate("StoryDetail", {
             position: position
-        })
+        });
     }
     render() {
-        const { story } = this.props
-        let displayImagePosition = 0
+        const { story } = this.props;
+        let displayImagePosition = 0;
         for (let image of story.images) {
-            if (image.viewed) displayImagePosition++
+            if (image.viewed) displayImagePosition++;
         }
-        if (displayImagePosition == story.images.length) displayImagePosition = 0
-        const displayImage = story.images[displayImagePosition]
+        if (displayImagePosition == story.images.length) displayImagePosition = 0;
+        const displayImage = story.images[displayImagePosition];
         return (
             <View style={styles.container}>
                 <TouchableOpacity activeOpacity={0.8} onPress={this.onPressHandle.bind(this)}>
-                    <ImageBackground imageStyle={{ resizeMode: 'cover' }} style={styles.imageBackground} source={{ uri: displayImage.url }}>
+                    <ImageBackground imageStyle={{ resizeMode: 'cover' }} style={styles.imageBackground} source={{ uri: BASE_URL + displayImage.url }}>
                         <Image style={styles.avatar} source={{ uri: BASE_URL + story.user.avatar_url }} />
                     </ImageBackground>
                     <View style={styles.nameWrapper}>
@@ -75,4 +76,4 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         marginLeft: 10
     }
-})
+});

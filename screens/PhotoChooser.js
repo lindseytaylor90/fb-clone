@@ -1,52 +1,53 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, ScrollView, Image } from 'react-native'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView, Image } from 'react-native';
 import { connect } from 'react-redux';
 import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
 import { FetchSystemImagesRequest } from '../actions/systemImagesActions';
 import { SCREEN_WIDTH, STATUSBAR_HEIGHT } from '../constants';
 import ExTouchableOpacity from '../components/ExTouchableOpacity';
 import { navigation } from '../rootNavigation';
+
 class PhotoChooser extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             selectedIndexs: []
-        }
+        };
     }
     componentDidMount() {
-        const { fetchSystemImages } = this.props
-        fetchSystemImages()
+        const { fetchSystemImages } = this.props;
+        fetchSystemImages();
     }
     onPressEscHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressSelectImageHandler(index) {
-        const isMutiple = this.props.route.params?.isMutiple
-        let selectedIndexs = [...this.state.selectedIndexs]
+        const isMutiple = this.props.route.params?.isMutiple;
+        let selectedIndexs = [...this.state.selectedIndexs];
         if (selectedIndexs.indexOf(index) > -1) {
             if (isMutiple === false) return this.setState({
                 ...this.state,
                 selectedIndexs: []
-            })
-            selectedIndexs.splice(selectedIndexs.indexOf(index), 1)
+            });
+            selectedIndexs.splice(selectedIndexs.indexOf(index), 1);
         } else {
             if (isMutiple === false) return this.setState({
                 ...this.state,
                 selectedIndexs: [index]
-            })
-            selectedIndexs.push(index)
+            });
+            selectedIndexs.push(index);
         }
         this.setState({
             ...this.state,
             selectedIndexs
-        })
+        });
     }
     onPressCameraHandler() {
-        navigation.navigate('Camera')
+        navigation.navigate('Camera');
     }
     render() {
-        const { systemImages } = this.props
-        const { selectedIndexs } = this.state
+        const { systemImages } = this.props;
+        const { selectedIndexs } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.navigationBar}>
@@ -84,19 +85,19 @@ class PhotoChooser extends Component {
                     </View>
                 </ScrollView>
             </View >
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         systemImages: state.systemImages
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchSystemImages: () => dispatch(FetchSystemImagesRequest())
-    }
-}
+    };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(PhotoChooser);
 const styles = StyleSheet.create({
     container: {
@@ -140,4 +141,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 20
     }
-})
+});

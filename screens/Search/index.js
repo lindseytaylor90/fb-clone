@@ -9,47 +9,47 @@ import { navigation } from '../../rootNavigation';
 
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     componentDidMount() {
-        const { fetchRecentSearching } = this.props
-        fetchRecentSearching()
+        const { fetchRecentSearching } = this.props;
+        fetchRecentSearching();
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onBlurSearchInputHandler({ nativeEvent }) {
-        const { text } = nativeEvent
+        const { text } = nativeEvent;
         navigation.navigate('Result', {
             keyword: text
-        })
+        });
     }
     onPressRecentItemHandler(searching) {
         switch (searching.type) {
             case searchType.KEYWORD:
                 navigation.navigate('Result', {
                     keyword: searching.keyword
-                })
+                });
                 break;
             case searchType.PEOPLE:
                 navigation.navigate('ProfileX', {
                     userId: searching.user.id
-                })
+                });
                 break;
             case searchType.PAGE:
                 navigation.navigate('Page', {
                     pageId: searching.page.id
-                })
+                });
                 break;
             case searchType.GROUP:
                 navigation.navigate('GroupProfile', {
                     id: searching.group.id
-                })
+                });
                 break;
         }
     }
     render() {
-        const { recentSearchings } = this.props
+        const { recentSearchings } = this.props;
 
         return (
             <View style={styles.container}>
@@ -84,19 +84,19 @@ class index extends Component {
                     </View>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         recentSearchings: state.history.home
-    }
-}
+    };
+};
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchRecentSearching: () => dispatch(FetchHomeHistoriesRequest())
-    }
-}
+    };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(index);
 const styles = StyleSheet.create({
     container: {
@@ -163,4 +163,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
+});

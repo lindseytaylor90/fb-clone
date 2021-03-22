@@ -1,79 +1,79 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, TextInput, ScrollView, Image } from 'react-native'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { SCREEN_WIDTH, SCREEN_HEIGHT, STATUSBAR_HEIGHT, BASE_URL } from '../../constants'
-import { navigation } from '../../rootNavigation'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, TextInput, ScrollView, Image } from 'react-native';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { SCREEN_WIDTH, SCREEN_HEIGHT, STATUSBAR_HEIGHT, BASE_URL } from '../../constants';
+import { navigation } from '../../rootNavigation';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
 
 export default class FullFriends extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             friends: [...props.route.params.friends],
             filterType: 1,
             keyword: ''
-        }
-        this._currentTab = 1
+        };
+        this._currentTab = 1;
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressToggleFilter() {
-        const { filterType } = this.state
-        if (filterType === 1) this.refs._horizontalScrollRef.scrollToEnd({ animated: true })
+        const { filterType } = this.state;
+        if (filterType === 1) this.refs._horizontalScrollRef.scrollToEnd({ animated: true });
         else this.refs._horizontalScrollRef.scrollTo({
             x: 0,
             y: 0,
             animated: true
-        })
+        });
         this.setState({
             ...this.state,
             filterType: filterType === 1 ? 2 : 1
-        })
+        });
     }
     onChangeSearchInputHandler({ nativeEvent }) {
-        const textValue = nativeEvent.text.toLowerCase()
+        const textValue = nativeEvent.text.toLowerCase();
         this.setState({
             ...this.props,
             keyword: textValue
-        })
+        });
     }
     onScrollToActChangeTab({ nativeEvent }) {
-        const offsetX = nativeEvent.contentOffset.x
+        const offsetX = nativeEvent.contentOffset.x;
         if (offsetX > SCREEN_WIDTH / 2) {
-            this.refs._horizontalScrollRef.scrollToEnd({ animated: true })
+            this.refs._horizontalScrollRef.scrollToEnd({ animated: true });
             this.setState({
                 ...this.state,
                 filterType: 2
-            })
+            });
         } else {
             this.refs._horizontalScrollRef.scrollTo({
                 x: 0,
                 y: 0,
                 animated: true,
                 duration: 100
-            })
+            });
             this.setState({
                 ...this.state,
                 filterType: 1
-            })
+            });
         }
     }
     onPressFriendOptionsHandler(friend) {
         navigation.navigate("FriendOptions", {
             friend
-        })
+        });
     }
     onPressProfileHandler(userId) {
         navigation.push('ProfileX', {
             userId
-        })
+        });
     }
     onPressSearchHandler() {
 
     }
     render() {
-        const { filterType, friends, keyword } = this.state
+        const { filterType, friends, keyword } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.navigationBar}>
@@ -168,7 +168,7 @@ export default class FullFriends extends Component {
                     </ScrollView>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 
@@ -270,4 +270,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'center'
     }
-})
+});

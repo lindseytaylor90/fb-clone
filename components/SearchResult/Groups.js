@@ -8,17 +8,17 @@ import { SCREEN_WIDTH, BASE_URL } from '../../constants';
 
 class Groups extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressViewGroupHandler(id) {
         navigation.navigate('GroupProfile', {
             id
-        })
+        });
     }
     render() {
-        const { hidden, isShowPreview, showAllFn } = this.props
-        let groups = [...this.props.groups]
-        if (isShowPreview) groups = groups.splice(0, 4)
+        const { hidden, isShowPreview, showAllFn } = this.props;
+        let groups = [...this.props.groups];
+        if (isShowPreview) groups = groups.splice(0, 4);
         return (
             <View style={{ ...styles.container, display: hidden ? 'none' : 'flex' }}>
                 <Text style={{ fontSize: 16, fontWeight: 'bold' }}>Groups</Text>
@@ -46,15 +46,15 @@ class Groups extends Component {
                     </TouchableOpacity>
                 }
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         groups: state.searchResult.groups
-    }
-}
-export default connect(mapStateToProps, null)(Groups)
+    };
+};
+export default connect(mapStateToProps, null)(Groups);
 const styles = StyleSheet.create({
     container: {
         margin: 10,
@@ -101,4 +101,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd',
         borderRadius: 5
     }
-})
+});

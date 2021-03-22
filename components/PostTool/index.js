@@ -7,36 +7,36 @@ import { BASE_URL } from '../../constants';
 
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             inputBgColor: "#fff"
-        }
+        };
     }
     onLiveStreamPressHandler() {
-        navigation.navigate('LiveStream')
+        navigation.navigate('LiveStream');
     }
     onPhotoUploaderPressHandler() {
-        navigation.navigate('PhotoChooser')
+        navigation.navigate('PhotoChooser');
     }
     onCheckInPressHandler() {
-        navigation.navigate('CheckIn')
+        navigation.navigate('CheckIn');
     }
     onFullPostToolPressHandler() {
-        navigation.navigate('FullPostTool')
+        navigation.navigate('FullPostTool');
     }
     onPressPostToAnyOneHandler() {
-        const { userX, page } = this.props
+        const { userX, page } = this.props;
         navigation.navigate('FullPostTool', {
             isPostToAnyOne: true,
             userX: userX || page
-        })
+        });
     }
 
     onPressSharePhotoToAnyOne() {
-        navigation.navigate('PhotoChooser')
+        navigation.navigate('PhotoChooser');
     }
     render() {
-        const { user, isWriteToAnyOne, userX, isWriteToPage, page } = this.props
+        const { user, isWriteToAnyOne, userX, isWriteToPage, page } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.postToolWrapper}>
@@ -72,15 +72,15 @@ class index extends Component {
                     </TouchableOpacity>
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = (state) => {
     return {
         user: state.user.user
-    }
-}
-export default connect(mapStateToProps, null)(index)
+    };
+};
+export default connect(mapStateToProps, null)(index);
 const styles = StyleSheet.create({
     container: {
         borderTopColor: '#ddd',
@@ -142,4 +142,4 @@ const styles = StyleSheet.create({
     userAvatarWrapper: {
 
     }
-})
+});

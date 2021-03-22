@@ -1,20 +1,20 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity } from 'react-native'
-import { connect } from 'react-redux'
-import VerticalRecommendItem from './VerticalRecommendItem'
-import ExTouchableOpacity from '../ExTouchableOpacity'
-import { navigation } from '../../rootNavigation'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity } from 'react-native';
+import { connect } from 'react-redux';
+import VerticalRecommendItem from './VerticalRecommendItem';
+import ExTouchableOpacity from '../ExTouchableOpacity';
+import { navigation } from '../../rootNavigation';
 
 class index extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressViewAllRecommendsHandler() {
-        navigation.navigate('FindFriends')
+        navigation.navigate('FindFriends');
     }
     render() {
-        const recommendFriends = [...this.props.recommendFriends]
-        if (recommendFriends.length === 0) return <View></View>
+        const recommendFriends = [...this.props.recommendFriends];
+        if (recommendFriends.length === 0) return <View></View>;
         return (
             <View style={styles.container}>
                 <View>
@@ -29,14 +29,14 @@ class index extends Component {
                     </Text>
                 </ExTouchableOpacity>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         recommendFriends: state.friends.recommendFriends
-    }
-}
+    };
+};
 export default connect(mapStateToProps, null)(index);
 const styles = StyleSheet.create({
     container: {
@@ -60,4 +60,4 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         borderRadius: 5
     }
-})
+});

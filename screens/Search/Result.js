@@ -1,31 +1,32 @@
-import React, { Component } from 'react'
-import { Text, StyleSheet, View, TouchableOpacity, ScrollView, Image } from 'react-native'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import { TextInput } from 'react-native-gesture-handler'
-import { STATUSBAR_HEIGHT, SCREEN_WIDTH, resultTypes, SCREEN_HEIGHT } from '../../constants'
-import { navigation } from '../../rootNavigation'
-import { connect } from 'react-redux'
-import { commonSearchRequest, SearchUsersRequest } from '../../actions/searchingActions'
-import { Peoples, Posts, Pages, Groups } from '../../components/SearchResult'
+import React, { Component } from 'react';
+import { Text, StyleSheet, View, TouchableOpacity, ScrollView, Image } from 'react-native';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import { TextInput } from 'react-native-gesture-handler';
+import { STATUSBAR_HEIGHT, SCREEN_WIDTH, resultTypes, SCREEN_HEIGHT } from '../../constants';
+import { navigation } from '../../rootNavigation';
+import { connect } from 'react-redux';
+import { commonSearchRequest, SearchUsersRequest } from '../../actions/searchingActions';
+import { Peoples, Posts, Pages, Groups } from '../../components/SearchResult';
+
 class Result extends Component {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             keyword: props.route.params.keyword,
             currentCategory: 0
-        }
+        };
     }
     componentDidMount() {
-        const { commonSearch } = this.props
-        const { keyword } = this.props.route.params
-        commonSearch(keyword)
+        const { commonSearch } = this.props;
+        const { keyword } = this.props.route.params;
+        commonSearch(keyword);
     }
     onBlurSearchInputHandler({ nativeEvent }) {
-        const { text } = nativeEvent
+        const { text } = nativeEvent;
     }
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressChangeCategoryHandler(categoryId) {
         setTimeout(() => {
@@ -34,10 +35,10 @@ class Result extends Component {
         this.setState({
             ...this.state,
             currentCategory: categoryId
-        })
+        });
     }
     render() {
-        const { keyword, currentCategory } = this.state
+        const { keyword, currentCategory } = this.state;
         return (
             <View style={styles.container}>
                 <View style={styles.searchToolWrapper}>
@@ -118,15 +119,15 @@ class Result extends Component {
                         showAllFn={this.onPressChangeCategoryHandler.bind(this, resultTypes.GROUP)} />
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapDispatchToProps = (dispatch, props) => {
     return {
         commonSearch: (keyword) => dispatch(commonSearchRequest(keyword))
-    }
-}
-export default connect(null, mapDispatchToProps)(Result)
+    };
+};
+export default connect(null, mapDispatchToProps)(Result);
 const styles = StyleSheet.create({
     container: {
 
@@ -169,4 +170,4 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         marginHorizontal: 5
     },
-})
+});

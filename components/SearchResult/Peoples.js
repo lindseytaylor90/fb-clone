@@ -8,17 +8,17 @@ import { SCREEN_WIDTH, BASE_URL } from '../../constants';
 
 class Peoples extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressViewProfileHandler(userId) {
         navigation.navigate('ProfileX', {
             userId
-        })
+        });
     }
     render() {
-        const { hidden, isShowPreview, showAllFn } = this.props
-        let users = [...this.props.users]
-        if (isShowPreview) users = users.splice(0, 10)
+        const { hidden, isShowPreview, showAllFn } = this.props;
+        let users = [...this.props.users];
+        if (isShowPreview) users = users.splice(0, 10);
         return (
             <View style={{ ...styles.container, display: hidden ? 'none' : 'flex' }}>
                 <Text style={{ fontSize: 16, fontWeight: 'bold' }}>People</Text>
@@ -45,7 +45,7 @@ class Peoples extends Component {
                     </TouchableOpacity>
                 }
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
@@ -100,4 +100,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd',
         borderRadius: 5
     }
-})
+});

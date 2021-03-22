@@ -8,22 +8,22 @@ import { SCREEN_WIDTH, BASE_URL } from '../../constants';
 
 class Posts extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressViewPostDetailHandler(id) {
         navigation.navigate('PostDetail', {
             id
-        })
+        });
     }
     onPressViewProfileHandler(userId) {
         navigation.navigate('ProfileX', {
             userId
-        })
+        });
     }
     render() {
-        const { hidden, isShowPreview, showAllFn } = this.props
-        let posts = [...this.props.posts]
-        if (isShowPreview) posts = posts.splice(0, 2)
+        const { hidden, isShowPreview, showAllFn } = this.props;
+        let posts = [...this.props.posts];
+        if (isShowPreview) posts = posts.splice(0, 2);
         return (
             <View style={{ ...styles.container, display: hidden ? 'none' : 'flex', marginTop: isShowPreview ? 0 : 10 }}>
                 {posts.map((post, index) => (
@@ -44,7 +44,7 @@ class Posts extends Component {
                             <View style={styles.content}>
                                 <Text numberOfLines={3}>{post.content}</Text>
                             </View>
-                            <Image style={styles.postImage} source={{ uri: post.image }} />
+                            <Image style={styles.postImage} source={{ uri: BASE_URL + post.image }} />
                         </View>
                     </ExTouchableOpacity>
                 ))}
@@ -58,15 +58,15 @@ class Posts extends Component {
                     </View>
                 }
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         posts: state.searchResult.posts
-    }
-}
-export default connect(mapStateToProps, null)(Posts)
+    };
+};
+export default connect(mapStateToProps, null)(Posts);
 const styles = StyleSheet.create({
     container: {
         margin: 10,
@@ -114,4 +114,4 @@ const styles = StyleSheet.create({
         backgroundColor: '#ddd',
         borderRadius: 5
     }
-})
+});

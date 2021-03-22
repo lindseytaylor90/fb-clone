@@ -10,13 +10,13 @@ import { STATUSBAR_HEIGHT, BASE_URL } from '../../constants';
 
 class GroupCategory extends PureComponent {
     constructor(props) {
-        super(props)
+        super(props);
         this.state = {
             searchToolBackground: 'rgba(0,0,0,0)',
             arrowColor: '#fff',
             searchToolBorderColor: 'rgba(0,0,0,0)',
             searchInputBackGround: 'rgba(255,255,255,0.4)'
-        }
+        };
     }
     onScrollHandler({ nativeEvent }) {
         if (nativeEvent.contentOffset.y > 210) {
@@ -26,7 +26,7 @@ class GroupCategory extends PureComponent {
                 arrowColor: '#000',
                 searchToolBorderColor: '#ddd',
                 searchInputBackGround: '#ddd'
-            })
+            });
         } else {
             this.setState({
                 ...this.state,
@@ -34,20 +34,20 @@ class GroupCategory extends PureComponent {
                 arrowColor: '#fff',
                 searchToolBorderColor: 'rgba(0,0,0,0)',
                 searchInputBackGround: 'rgba(255,255,255,0.4)'
-            })
+            });
         }
     }
     onPressBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     onPressGoToSearch() {
-        navigation.push('GroupSearch')
+        navigation.push('GroupSearch');
     }
     render() {
-        console.log("render")
-        const { category } = this.props.route.params
-        const arrID = category.groups.map((group) => group.groupId)
-        const { searchToolBackground, arrowColor, searchToolBorderColor, searchInputBackGround } = this.state
+        console.log("render");
+        const { category } = this.props.route.params;
+        const arrID = category.groups.map((group) => group.groupId);
+        const { searchToolBackground, arrowColor, searchToolBorderColor, searchInputBackGround } = this.state;
         return (
             <View style={styles.container}>
                 <View style={{ ...styles.searchToolWrapper, backgroundColor: searchToolBackground, borderBottomColor: searchToolBorderColor }}>
@@ -88,10 +88,10 @@ class GroupCategory extends PureComponent {
                     </ExTouchableOpacity>
                 </ScrollView>
             </View >
-        )
+        );
     }
 }
-export default GroupCategory
+export default GroupCategory;
 const screenWidth = Math.round(Dimensions.get('window').width);
 const styles = StyleSheet.create({
     container: {
@@ -186,4 +186,4 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#ddd',
     }
-})
+});

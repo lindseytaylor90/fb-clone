@@ -1,48 +1,49 @@
 /// THIS FILE IS used when edititng?
 
-import React, { PureComponent } from 'react'
-import { Text, StyleSheet, View, Image, TouchableOpacity, ScrollView } from 'react-native'
-import { connect } from 'react-redux'
-import { SCREEN_WIDTH, SCREEN_HEIGHT, STATUSBAR_HEIGHT, BASE_URL } from '../../constants'
-import * as navigation from '../../rootNavigation'
-import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5'
-import PostTool from '../../components/PostTool'
-import FriendsShowing from '../../components/FriendsShowing'
-import HighlightPhotos from '../../components/HighlightPhotos'
-import ProfilePosts from '../../components/ProfilePosts'
-import { FetchUserXRequest, ResetUserX } from '../../actions/userXActions'
-import ExTouchableOpacity from '../../components/ExTouchableOpacity'
+import React, { PureComponent } from 'react';
+import { Text, StyleSheet, View, Image, TouchableOpacity, ScrollView } from 'react-native';
+import { connect } from 'react-redux';
+import { SCREEN_WIDTH, SCREEN_HEIGHT, STATUSBAR_HEIGHT, BASE_URL } from '../../constants';
+import * as navigation from '../../rootNavigation';
+import FontAwesome5Icon from 'react-native-vector-icons/FontAwesome5';
+import PostTool from '../../components/PostTool';
+import FriendsShowing from '../../components/FriendsShowing';
+import HighlightPhotos from '../../components/HighlightPhotos';
+import ProfilePosts from '../../components/ProfilePosts';
+import { FetchUserXRequest, ResetUserX } from '../../actions/userXActions';
+import ExTouchableOpacity from '../../components/ExTouchableOpacity';
+
 class ProfileX extends PureComponent {
     constructor(props) {
         super(props);
     }
     componentDidMount() {
-        const { userId } = this.props.route.params
-        const { fetchUserInfo } = this.props
-        fetchUserInfo(userId)
+        const { userId } = this.props.route.params;
+        const { fetchUserInfo } = this.props;
+        fetchUserInfo(userId);
     }
     componentWillUnmount() {
-        const { resetUserX } = this.props
-        resetUserX()
+        const { resetUserX } = this.props;
+        resetUserX();
     }
 
     onPressGoBackHandler() {
-        navigation.goBack()
+        navigation.goBack();
     }
     scrollToTop() {
         this.refs._scrollView.scrollTo({
             x: 0,
             y: 0,
             animated: true
-        })
+        });
     }
     render() {
         console.debug("hello profileX");
-        const { user, highlightPhotos, profilePosts, myFriends } = this.props
-        if (!user.hasOwnProperty('id')) return <View></View>
-        const friends = [...this.props.friends]
+        const { user, highlightPhotos, profilePosts, myFriends } = this.props;
+        if (!user.hasOwnProperty('id')) return <View></View>;
+        const friends = [...this.props.friends];
         let isFriend = false;
-        const ids = myFriends.map(friend => friend.id)
+        const ids = myFriends.map(friend => friend.id);
         if (ids.indexOf(user.id) > -1) isFriend = true;
         console.log('user image = ', user.cover_url);
         return (
@@ -180,7 +181,7 @@ class ProfileX extends PureComponent {
                     <ProfilePosts highLightPhotos={highlightPhotos} profilePosts={profilePosts}></ProfilePosts>
                 </ScrollView>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
@@ -190,14 +191,14 @@ const mapStateToProps = state => {
         friends: state.userX.friends,
         profilePosts: state.userX.posts,
         myFriends: state.user.friends,
-    }
+    };
 }
 const mapDispatchToProps = (dispatch, props) => {
     return {
         fetchUserInfo: (userId) => dispatch(FetchUserXRequest(userId)),
         resetUserX: () => dispatch(ResetUserX())
-    }
-}
+    };
+};
 export default connect(mapStateToProps, mapDispatchToProps)(ProfileX);
 const styles = StyleSheet.create({
     superContainer: {
@@ -429,4 +430,4 @@ const styles = StyleSheet.create({
         width: 30,
         alignItems: "center"
     }
-})
+});

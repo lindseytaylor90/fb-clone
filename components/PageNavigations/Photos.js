@@ -7,15 +7,15 @@ import { SCREEN_WIDTH, BASE_URL } from '../../constants';
 
 class Photos extends Component {
     constructor(props) {
-        super(props)
+        super(props);
     }
     onPressPhotoPostHandler(postId) {
         navigation.navigate('PagePostDetail', {
             postId
-        })
+        });
     }
     render() {
-        const { photos, page } = this.props
+        const { photos, page } = this.props;
         return (
             <View style={styles.container}>
                 <View style={styles.albumsWrapper}>
@@ -24,7 +24,7 @@ class Photos extends Component {
                         horizontal={true}
                         showsHorizontalScrollIndicator={false}>
                         <View style={styles.albumItem}>
-                            <Image style={styles.albumAvatar} source={{ uri: photos[0]?.image }} />
+                            <Image style={styles.albumAvatar} source={{ uri: BASE_URL + photos[0]?.image }} />
                             <Text style={{
                                 marginVertical: 5,
                                 fontWeight: '600'
@@ -106,21 +106,21 @@ class Photos extends Component {
                                 ...styles.imageWrapper,
                                 marginRight: (index + 1) % 3 === 0 ? 0 : 5
                             }}>
-                            <Image source={{ uri: photo.image }} style={styles.image} />
+                            <Image source={{ uri: BASE_URL + photo.image }} style={styles.image} />
                         </ExTouchableOpacity>
                     ))}
 
                 </View>
             </View>
-        )
+        );
     }
 }
 const mapStateToProps = state => {
     return {
         photos: state.page.photos
-    }
-}
-export default connect(mapStateToProps, null)(Photos)
+    };
+};
+export default connect(mapStateToProps, null)(Photos);
 const styles = StyleSheet.create({
     container: {
         marginVertical: 10
@@ -165,4 +165,4 @@ const styles = StyleSheet.create({
         height: '100%'
     },
 
-})
+});

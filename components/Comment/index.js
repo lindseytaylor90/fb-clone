@@ -14,7 +14,7 @@ export default class Comment extends Component {
                         <TouchableOpacity><Text style={styles.name}>{comment.name}</Text></TouchableOpacity>
                         <Text style={styles.content}>{comment.content}</Text>
                     </View>
-                    <ScaledImage width={screenWidth * 0.7} style={styles.image} source={comment.image}></ScaledImage>
+                    <ScaledImage width={screenWidth * 0.7} style={styles.image} source={BASE_URL + comment.image}></ScaledImage>
                     <View style={styles.toolContainer}>
                         <Text style={styles.createAt}>{comment.create_at}</Text>
                         <TouchableOpacity style={styles.likeBtn}><Text >Like</Text></TouchableOpacity>
@@ -74,5 +74,5 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         flex: 1
     }
-})
+});
 
