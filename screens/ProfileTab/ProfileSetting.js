@@ -84,7 +84,7 @@ class ProfileSetting extends Component {
                     <View style={styles.myProfile}>
                         <View style={styles.topTitle}>
                             <Text style={{ fontSize: 20, fontWeight: '600' }}>Link to your profile</Text>
-                            <Text style={{ color: '#333' }}>Your private link on Facebook</Text>
+                            <Text style={{ color: '#333' }}>Your private link on MurderBook</Text>
                         </View>
                         <View>
                             <Text style={{ fontWeight: '600', marginTop: 5 }}>https://www.facebook.com/profile/{user.id}</Text>

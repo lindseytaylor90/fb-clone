@@ -65,7 +65,7 @@ class index extends Component {
                     <ExTouchableOpacity onPress={this.onPressWatchVideoHandler} style={styles.btnOption} >
                         <Image style={styles.icon} source={require('../../assets/icons/video.png')} />
                         <View>
-                            <Text style={styles.name}>Video on facebook</Text>
+                            <Text style={styles.name}>Video on Murderbook</Text>
                             <Text style={{ color: '#333' }}>X+ new videos</Text>
                         </View>
                     </ExTouchableOpacity>

@@ -3030,13 +3030,13 @@
                 }
             ],
             "isPin": false,
-            "avatar_url": "https://stackjava.com/wp-content/uploads/2018/08/Golang-logo.png"
+            "avatar_url": "/assets/images/snoop.jpg"
         }
     ],
     "group_posts": [
         {
             "id": 1,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "12h ago",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "userId": 3,
@@ -3095,7 +3095,7 @@
         },
         {
             "id": 2,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "Just now",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "userId": 9,
@@ -5608,7 +5608,7 @@
     "page_posts": [
         {
             "id": 1,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "12h ago",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "pageId": 1,
@@ -5663,7 +5663,7 @@
         },
         {
             "id": 2,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "12h ago",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "pageId": 1,
@@ -5718,7 +5718,7 @@
         },
         {
             "id": 3,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "12h ago",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "pageId": 1,
@@ -5773,7 +5773,7 @@
         },
         {
             "id": 4,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "12h ago",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "pageId": 1,
@@ -5828,7 +5828,7 @@
         },
         {
             "id": 5,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "12h ago",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "pageId": 1,
@@ -5883,7 +5883,7 @@
         },
         {
             "id": 6,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "12h ago",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "pageId": 2,
@@ -5938,7 +5938,7 @@
         },
         {
             "id": 7,
-            "image": "https://gamek.mediacdn.vn/2019/10/20/photo-1-1571521922264714072244.jpg",
+            "image": "",
             "create_at": "12h ago",
             "content": "nine program next article distant cream swam possibly mother laugh copper given stuck return invented building shot red list better correctly proper safety hardly",
             "pageId": 2,

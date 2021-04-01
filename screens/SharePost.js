@@ -65,7 +65,7 @@ class SharePost extends Component {
                                 </TouchableOpacity>
                                 <View style={styles.areaOptionsWrapper}>
                                     <TouchableOpacity style={styles.areaOptionItem}>
-                                        <Text style={{ color: '#333' }}>Facebook</Text>
+                                        <Text style={{ color: '#333' }}>Murderbook</Text>
                                         <FontAwesome5Icon color='#333' name="caret-down" size={20}></FontAwesome5Icon>
                                     </TouchableOpacity>
                                     <TouchableOpacity style={styles.areaOptionItem}>
